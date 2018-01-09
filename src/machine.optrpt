@@ -1,0 +1,118 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: D1MACH
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (D1MACH) [1/4=25.0%] machine.for(1,16)
+  -> EXTERN: (57,9) for_write_seq_fmt
+  -> EXTERN: (58,9) for_write_seq_fmt
+  -> EXTERN: (59,9) for_write_seq_fmt
+  -> EXTERN: (60,9) for_write_seq_fmt
+  -> EXTERN: (61,9) for_write_seq_fmt
+  -> EXTERN: (61,9) for_write_seq_fmt_xmit
+  -> EXTERN: (63,9) for_stop_core
+  -> EXTERN: (75,9) for_write_seq_fmt
+  -> EXTERN: (76,9) for_write_seq_fmt
+  -> EXTERN: (77,9) for_write_seq_fmt
+  -> EXTERN: (78,9) for_write_seq_fmt
+  -> EXTERN: (79,9) for_write_seq_fmt
+  -> EXTERN: (79,9) for_write_seq_fmt_xmit
+  -> EXTERN: (81,9) for_stop_core
+
+===========================================================================
+
+Begin optimization report for: I1MACH
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (I1MACH) [2/4=50.0%] machine.for(86,16)
+  -> EXTERN: (175,9) for_write_seq_fmt
+  -> EXTERN: (176,9) for_write_seq_fmt
+  -> EXTERN: (177,9) for_write_seq_fmt
+  -> EXTERN: (178,9) for_write_seq_fmt
+  -> EXTERN: (179,9) for_write_seq_fmt
+  -> EXTERN: (179,9) for_write_seq_fmt_xmit
+  -> EXTERN: (181,9) for_stop_core
+  -> EXTERN: (215,9) for_write_seq_fmt
+  -> EXTERN: (216,9) for_write_seq_fmt
+  -> EXTERN: (217,9) for_write_seq_fmt
+  -> EXTERN: (218,9) for_write_seq_fmt
+  -> EXTERN: (219,9) for_write_seq_fmt
+  -> EXTERN: (219,9) for_write_seq_fmt_xmit
+  -> EXTERN: (221,9) for_stop_core
+
+===========================================================================
+
+Begin optimization report for: R1MACH
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (R1MACH) [3/4=75.0%] machine.for(226,16)
+  -> EXTERN: (279,9) for_write_seq_fmt
+  -> EXTERN: (280,9) for_write_seq_fmt
+  -> EXTERN: (281,9) for_write_seq_fmt
+  -> EXTERN: (282,9) for_write_seq_fmt
+  -> EXTERN: (283,9) for_write_seq_fmt
+  -> EXTERN: (283,9) for_write_seq_fmt_xmit
+  -> EXTERN: (285,9) for_stop_core
+  -> EXTERN: (297,9) for_write_seq_fmt
+  -> EXTERN: (298,9) for_write_seq_fmt
+  -> EXTERN: (299,9) for_write_seq_fmt
+  -> EXTERN: (300,9) for_write_seq_fmt
+  -> EXTERN: (301,9) for_write_seq_fmt
+  -> EXTERN: (301,9) for_write_seq_fmt_xmit
+  -> EXTERN: (303,9) for_stop_core
+
+===========================================================================
+
+Begin optimization report for: TIMESTAMP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (TIMESTAMP) [4/4=100.0%] machine.for(308,18)
+  -> EXTERN: (356,12) for_date_and_time
+  -> EXTERN: (358,7) for_read_int_fmt_xmit
+  -> EXTERN: (358,7) for_read_int_fmt_xmit
+  -> EXTERN: (358,7) for_read_int_fmt
+  -> EXTERN: (359,7) for_read_int_fmt_xmit
+  -> EXTERN: (359,7) for_read_int_fmt_xmit
+  -> EXTERN: (359,7) for_read_int_fmt_xmit
+  -> EXTERN: (359,7) for_read_int_fmt
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt_xmit
+  -> EXTERN: (382,7) for_write_seq_fmt
+
+===========================================================================

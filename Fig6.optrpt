@@ -1,0 +1,19 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Begin optimization report for: main()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main())
+  -> DELETED: (17,49) MPI()
+  -> DELETED: (34,13) MPI()
+  -> DELETED: (35,13) MPI()
+
+
+    Report from: Code generation optimizations [cg]
+
+Fig6.c(17,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+Fig6.c(17,12):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+===========================================================================

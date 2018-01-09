@@ -1,0 +1,502 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: gauss_legendre(int, double (*)(double, void *), void *, double, double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gauss_legendre(int, double (*)(double, void *), void *, double, double)) [1/5=20.0%] gauss_legendre.c(238,1)
+  -> EXTERN: (247,9) _vla_alloc(long)
+  -> EXTERN: (247,16) _vla_alloc(long)
+  -> INLINE: (269,3) gauss_legendre_tbl(int, double *, double *, double) (isz = 176) (sz = 187)
+    -> EXTERN: (596,8) cos(double)
+  -> INDIRECT-: (278,13) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (282,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (282,31) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (291,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (291,31) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> EXTERN: (300,11) _vla_free(void *, long)
+  -> EXTERN: (300,11) _vla_free(void *, long)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gauss_legendre.c(250,2)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(591,2) inlined into gauss_legendre.c(269,3)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 671 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+
+   LOOP BEGIN at gauss_legendre.c(599,3) inlined into gauss_legendre.c(269,3)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(269,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 628 and P0.955 line 625
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(269,3)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(635,5) inlined into gauss_legendre.c(269,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 641 and P0.955 line 638
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #25438: unrolled without remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(644,5) inlined into gauss_legendre.c(269,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 651 and P0.955 line 647
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(279,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(282,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(282,31) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(288,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(291,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(291,31) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+===========================================================================
+
+Begin optimization report for: gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)) [2/5=40.0%] gauss_legendre.c(305,1)
+  -> EXTERN: (314,9) _vla_alloc(long)
+  -> EXTERN: (314,16) _vla_alloc(long)
+  -> INLINE: (336,3) gauss_legendre_tbl(int, double *, double *, double) (isz = 176) (sz = 187)
+    -> EXTERN: (596,8) cos(double)
+  -> INDIRECT-: (345,13) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (349,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (349,31) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (358,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (358,31) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> EXTERN: (367,11) _vla_free(void *, long)
+  -> EXTERN: (367,11) _vla_free(void *, long)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gauss_legendre.c(317,2)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(591,2) inlined into gauss_legendre.c(336,3)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 671 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+
+   LOOP BEGIN at gauss_legendre.c(599,3) inlined into gauss_legendre.c(336,3)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(336,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 628 and P0.955 line 625
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(336,3)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(635,5) inlined into gauss_legendre.c(336,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 641 and P0.955 line 638
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #25438: unrolled without remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(644,5) inlined into gauss_legendre.c(336,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 651 and P0.955 line 647
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(346,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(349,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(349,31) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(355,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(358,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(358,31) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+===========================================================================
+
+Begin optimization report for: gauss_legendre_modified(int, double __complex__ (*)(double, ItgParm *), ItgParm *, double, double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gauss_legendre_modified(int, double __complex__ (*)(double, ItgParm *), ItgParm *, double, double)) [3/5=60.0%] gauss_legendre.c(373,1)
+  -> EXTERN: (382,9) _vla_alloc(long)
+  -> EXTERN: (382,16) _vla_alloc(long)
+  -> INLINE: (404,3) gauss_legendre_tbl(int, double *, double *, double) (isz = 176) (sz = 187)
+    -> EXTERN: (596,8) cos(double)
+  -> INDIRECT-: (413,13) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (417,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (417,28) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (426,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (426,28) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> EXTERN: (435,11) _vla_free(void *, long)
+  -> EXTERN: (435,11) _vla_free(void *, long)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gauss_legendre.c(385,2)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(591,2) inlined into gauss_legendre.c(404,3)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 671 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+
+   LOOP BEGIN at gauss_legendre.c(599,3) inlined into gauss_legendre.c(404,3)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(404,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 628 and P0.955 line 625
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(404,3)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(635,5) inlined into gauss_legendre.c(404,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 641 and P0.955 line 638
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #25438: unrolled without remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(644,5) inlined into gauss_legendre.c(404,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 651 and P0.955 line 647
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(414,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(417,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(417,28) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(423,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(426,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(426,28) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+===========================================================================
+
+Begin optimization report for: gauss_legendre_2D_cube(int, double (*)(double, double, void *), void *, double, double, double, double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gauss_legendre_2D_cube(int, double (*)(double, double, void *), void *, double, double, double, double)) [4/5=80.0%] gauss_legendre.c(476,1)
+  -> EXTERN: (483,9) _vla_alloc(long)
+  -> EXTERN: (483,15) _vla_alloc(long)
+  -> INLINE: (505,3) gauss_legendre_tbl(int, double *, double *, double) (isz = 176) (sz = 187)
+    -> EXTERN: (596,8) cos(double)
+  -> INDIRECT-: (517,17) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (522,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (522,33) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (529,15) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (529,33) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (539,22) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (539,43) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (539,64) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (539,85) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (552,22) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (552,43) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (552,64) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> INDIRECT-: (552,85) 
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> EXTERN: (562,13) _vla_free(void *, long)
+  -> EXTERN: (562,13) _vla_free(void *, long)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gauss_legendre.c(486,2)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(591,2) inlined into gauss_legendre.c(505,3)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 671 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 671
+   remark #15346: vector dependence: assumed FLOW dependence between w0.955 line 665 and w0.955 line 668
+   remark #15346: vector dependence: assumed ANTI dependence between w0.955 line 668 and w0.955 line 665
+
+   LOOP BEGIN at gauss_legendre.c(599,3) inlined into gauss_legendre.c(505,3)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(505,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 628 and P0.955 line 625
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 625 and P0.955 line 628
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(622,5) inlined into gauss_legendre.c(505,3)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(635,5) inlined into gauss_legendre.c(505,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 641 and P0.955 line 638
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 638 and P0.955 line 641
+         remark #25438: unrolled without remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(644,5) inlined into gauss_legendre.c(505,3)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0.955 line 651 and P0.955 line 647
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+         remark #15346: vector dependence: assumed ANTI dependence between P0.955 line 647 and P0.955 line 651
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(519,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(522,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(522,33) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(526,3)
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(529,15) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(529,33) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(533,3)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25452: Original Order found to be proper, but by a close margin
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,22) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,43) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,64) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,85) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s line 539 and s line 539
+   remark #15346: vector dependence: assumed FLOW dependence between s line 539 and s line 539
+   remark #15346: vector dependence: assumed ANTI dependence between s line 539 and s line 539
+
+   LOOP BEGIN at gauss_legendre.c(536,4)
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,22) ]
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,43) ]
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,64) ]
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(539,85) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gauss_legendre.c(546,3)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25452: Original Order found to be proper, but by a close margin
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,22) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,43) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,64) ]
+   remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,85) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s line 552 and s line 552
+   remark #15346: vector dependence: assumed FLOW dependence between s line 552 and s line 552
+   remark #15346: vector dependence: assumed ANTI dependence between s line 552 and s line 552
+
+   LOOP BEGIN at gauss_legendre.c(549,4)
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,22) ]
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,43) ]
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,64) ]
+      remark #15382: vectorization support: call to function (indirect call) cannot be vectorized   [ gauss_legendre.c(552,85) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: gauss_legendre_tbl(int, double *, double *, double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gauss_legendre_tbl(int, double *, double *, double)) [5/5=100.0%] gauss_legendre.c(578,1)
+  -> EXTERN: (596,8) cos(double)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gauss_legendre.c(591,2)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between x line 675 and w line 676
+   remark #15346: vector dependence: assumed OUTPUT dependence between w line 676 and x line 675
+
+   LOOP BEGIN at gauss_legendre.c(599,3)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+
+      LOOP BEGIN at gauss_legendre.c(622,5)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0 line 628 and P0 line 625
+         remark #15346: vector dependence: assumed ANTI dependence between P0 line 625 and P0 line 628
+         remark #15346: vector dependence: assumed ANTI dependence between P0 line 625 and P0 line 628
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(622,5)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=1024
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(635,5)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0 line 641 and P0 line 638
+         remark #15346: vector dependence: assumed ANTI dependence between P0 line 638 and P0 line 641
+         remark #15346: vector dependence: assumed ANTI dependence between P0 line 638 and P0 line 641
+         remark #25438: unrolled without remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gauss_legendre.c(644,5)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between P0 line 651 and P0 line 647
+         remark #15346: vector dependence: assumed ANTI dependence between P0 line 647 and P0 line 651
+         remark #15346: vector dependence: assumed ANTI dependence between P0 line 647 and P0 line 651
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The compiler's heuristics indicate that the function is not profitable to 
+    inline.  Override this decision by adding "inline 
+    __attribute__((always_inline))" to the declaration of the called function, 
+    or add "#pragma forceinline" before the call site.
+

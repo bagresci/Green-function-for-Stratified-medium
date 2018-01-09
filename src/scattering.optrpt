@@ -1,0 +1,1299 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: angle1(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (angle1(double, void *)) [1/24=4.2%] scattering.c(5,48)
+  -> EXTERN: (9,15) ccos(double __complex__)
+  -> EXTERN: (9,34) cos(double)
+  -> EXTERN: (9,55) cos(double)
+  -> EXTERN: (9,66) sin(double)
+  -> EXTERN: (9,81) cos(double)
+  -> EXTERN: (9,93) sin(double)
+  -> EXTERN: (9,108) sin(double)
+
+===========================================================================
+
+Begin optimization report for: angle2(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (angle2(double, void *)) [2/24=8.3%] scattering.c(12,48)
+  -> EXTERN: (16,15) csin(double __complex__)
+  -> EXTERN: (16,34) cos(double)
+  -> EXTERN: (16,55) sin(double)
+  -> EXTERN: (16,66) sin(double)
+  -> EXTERN: (16,81) cos(double)
+  -> EXTERN: (16,93) sin(double)
+  -> EXTERN: (16,108) sin(double)
+
+===========================================================================
+
+Begin optimization report for: angle3(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (angle3(double, void *)) [3/24=12.5%] scattering.c(19,48)
+  -> EXTERN: (23,14) ccos(double __complex__)
+  -> EXTERN: (23,33) cos(double)
+  -> EXTERN: (23,54) ccos(double __complex__)
+  -> EXTERN: (23,74) sin(double)
+  -> EXTERN: (23,96) sin(double)
+  -> EXTERN: (23,111) sin(double)
+  -> EXTERN: (23,126) cos(double)
+  -> EXTERN: (23,138) sin(double)
+  -> EXTERN: (23,153) sin(double)
+
+===========================================================================
+
+Begin optimization report for: angle4(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (angle4(double, void *)) [4/24=16.7%] scattering.c(26,48)
+  -> EXTERN: (31,13) ccos(double __complex__)
+  -> EXTERN: (31,32) cos(double)
+  -> EXTERN: (31,53) tan(double)
+  -> EXTERN: (31,64) sin(double)
+  -> EXTERN: (31,79) cos(double)
+  -> EXTERN: (31,91) sin(double)
+  -> EXTERN: (31,106) sin(double)
+
+===========================================================================
+
+Begin optimization report for: angle5(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (angle5(double, void *)) [5/24=20.8%] scattering.c(34,48)
+  -> EXTERN: (38,13) ccos(double __complex__)
+  -> EXTERN: (38,32) cos(double)
+  -> EXTERN: (38,53) cot(double)
+  -> EXTERN: (38,64) sin(double)
+  -> EXTERN: (38,79) cos(double)
+  -> EXTERN: (38,91) sin(double)
+  -> EXTERN: (38,106) sin(double)
+
+===========================================================================
+
+Begin optimization report for: ellip_f(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ellip_f(double, void *)) [6/24=25.0%] scattering.c(41,46)
+  -> EXTERN: (49,23) creal(double __complex__)
+  -> EXTERN: (49,29) csqrt(double __complex__)
+  -> EXTERN: (49,61) creal(double __complex__)
+  -> EXTERN: (49,67) csqrt(double __complex__)
+  -> EXTERN: (53,9) MPI()
+  -> EXTERN: (53,25) cos(double)
+  -> EXTERN: (53,29) MPI()
+  -> EXTERN: (53,44) sin(double)
+  -> EXTERN: (53,48) MPI()
+  -> INDIRECT-: (53,66) 
+     [[ Unable to inline indirect callsite  <1>]]
+  -> EXTERN: (53,81) sin(double)
+  -> EXTERN: (53,85) MPI()
+  -> EXTERN: (53,100) cos(double)
+  -> EXTERN: (53,104) MPI()
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at scattering.c(48,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between kmax line 49 and kmax line 49
+   remark #15346: vector dependence: assumed ANTI dependence between kmax line 49 and kmax line 49
+LOOP END
+===========================================================================
+
+Begin optimization report for: integral_real(Sys *, double, double, double, double, double, double, double __complex__ (*)(double __complex__, void *))
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (integral_real(Sys *, double, double, double, double, double, double, double __complex__ (*)(double __complex__, void *))) [7/24=29.2%] scattering.c(72,154)
+  -> EXTERN: (78,23) creal(double __complex__)
+  -> EXTERN: (78,29) csqrt(double __complex__)
+  -> EXTERN: (78,61) creal(double __complex__)
+  -> EXTERN: (78,67) csqrt(double __complex__)
+  -> EXTERN: (85,4) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (86,4) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (87,17) MPI()
+  -> EXTERN: (87,23) MPI()
+
+===========================================================================
+
+Begin optimization report for: Matsxx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matsxx(double __complex__, void *)) [8/24=33.3%] scattering.c(91,55)
+  -> EXTERN: (100,8) index_finder(Sys *, double)
+  -> EXTERN: (101,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (104,13) cexp(double __complex__)
+  -> EXTERN: (104,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (104,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (104,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (104,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (104,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (104,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (104,132) cexp(double __complex__)
+  -> EXTERN: (104,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (104,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (104,197) cexp(double __complex__)
+  -> EXTERN: (104,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (104,239) cexp(double __complex__)
+  -> EXTERN: (104,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (104,282) cexp(double __complex__)
+  -> EXTERN: (104,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (104,312) cexp(double __complex__)
+  -> EXTERN: (104,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (107,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (107,67) cexp(double __complex__)
+  -> EXTERN: (107,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (107,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (107,151) cexp(double __complex__)
+  -> EXTERN: (107,158) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,203) cexp(double __complex__)
+  -> EXTERN: (107,210) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,255) cexp(double __complex__)
+  -> EXTERN: (107,262) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,307) cexp(double __complex__)
+  -> EXTERN: (107,314) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,360) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (107,380) cexp(double __complex__)
+  -> EXTERN: (107,387) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,422) cexp(double __complex__)
+  -> EXTERN: (107,429) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,465) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (107,485) cexp(double __complex__)
+  -> EXTERN: (107,492) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (107,528) cexp(double __complex__)
+  -> EXTERN: (107,535) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (108,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (108,44) cexp(double __complex__)
+  -> EXTERN: (108,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (108,71) cexp(double __complex__)
+  -> EXTERN: (108,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (108,106) cexp(double __complex__)
+  -> EXTERN: (108,113) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,13) cexp(double __complex__)
+  -> EXTERN: (112,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (112,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (112,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (112,132) cexp(double __complex__)
+  -> EXTERN: (112,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (112,197) cexp(double __complex__)
+  -> EXTERN: (112,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,240) cexp(double __complex__)
+  -> EXTERN: (112,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,284) cexp(double __complex__)
+  -> EXTERN: (112,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (112,315) cexp(double __complex__)
+  -> EXTERN: (112,322) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (115,20) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(112,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(112,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(112,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(112,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(112,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(112,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(107,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(107,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(107,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(107,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(108,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(108,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(104,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(104,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(104,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(104,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(104,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(104,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(115,20):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(115,20):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(115,35):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(115,35):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matpxx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpxx(double __complex__, void *)) [9/24=37.5%] scattering.c(118,55)
+  -> EXTERN: (127,8) index_finder(Sys *, double)
+  -> EXTERN: (128,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (131,13) cexp(double __complex__)
+  -> EXTERN: (131,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (131,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (131,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (131,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (131,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (131,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (131,132) cexp(double __complex__)
+  -> EXTERN: (131,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (131,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (131,197) cexp(double __complex__)
+  -> EXTERN: (131,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (131,239) cexp(double __complex__)
+  -> EXTERN: (131,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (131,282) cexp(double __complex__)
+  -> EXTERN: (131,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (131,312) cexp(double __complex__)
+  -> EXTERN: (131,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (134,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (134,67) cexp(double __complex__)
+  -> EXTERN: (134,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (134,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (134,151) cexp(double __complex__)
+  -> EXTERN: (134,158) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,203) cexp(double __complex__)
+  -> EXTERN: (134,210) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,255) cexp(double __complex__)
+  -> EXTERN: (134,262) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,307) cexp(double __complex__)
+  -> EXTERN: (134,314) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,360) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (134,380) cexp(double __complex__)
+  -> EXTERN: (134,387) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,422) cexp(double __complex__)
+  -> EXTERN: (134,429) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,465) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (134,485) cexp(double __complex__)
+  -> EXTERN: (134,492) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (134,528) cexp(double __complex__)
+  -> EXTERN: (134,535) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (135,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (135,44) cexp(double __complex__)
+  -> EXTERN: (135,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (135,71) cexp(double __complex__)
+  -> EXTERN: (135,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (135,106) cexp(double __complex__)
+  -> EXTERN: (135,113) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,13) cexp(double __complex__)
+  -> EXTERN: (138,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (138,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (138,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (138,132) cexp(double __complex__)
+  -> EXTERN: (138,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (138,197) cexp(double __complex__)
+  -> EXTERN: (138,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,240) cexp(double __complex__)
+  -> EXTERN: (138,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,284) cexp(double __complex__)
+  -> EXTERN: (138,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (138,315) cexp(double __complex__)
+  -> EXTERN: (138,322) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (141,31) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(138,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(138,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(138,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(138,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(138,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(138,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(134,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(134,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(134,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(134,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(135,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(135,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(131,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(131,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(131,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(131,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(131,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(131,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(141,65):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(141,65):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(141,82):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(141,82):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(141,98):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(141,98):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matsxy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matsxy(double __complex__, void *)) [10/24=41.7%] scattering.c(144,55)
+  -> EXTERN: (149,20) cos(double)
+  -> EXTERN: (150,20) sin(double)
+  -> EXTERN: (154,8) index_finder(Sys *, double)
+  -> EXTERN: (156,39) acos(double)
+  -> EXTERN: (158,39) acos(double)
+  -> EXTERN: (160,39) acos(double)
+  -> EXTERN: (162,39) acos(double)
+  -> EXTERN: (165,13) cexp(double __complex__)
+  -> EXTERN: (165,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (165,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (165,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (165,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (165,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (165,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (165,132) cexp(double __complex__)
+  -> EXTERN: (165,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (165,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (165,197) cexp(double __complex__)
+  -> EXTERN: (165,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (165,239) cexp(double __complex__)
+  -> EXTERN: (165,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (165,282) cexp(double __complex__)
+  -> EXTERN: (165,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (165,312) cexp(double __complex__)
+  -> EXTERN: (165,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (168,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (168,67) cexp(double __complex__)
+  -> EXTERN: (168,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (168,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (168,151) cexp(double __complex__)
+  -> EXTERN: (168,158) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,203) cexp(double __complex__)
+  -> EXTERN: (168,210) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,255) cexp(double __complex__)
+  -> EXTERN: (168,262) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,307) cexp(double __complex__)
+  -> EXTERN: (168,314) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,360) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (168,380) cexp(double __complex__)
+  -> EXTERN: (168,387) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,422) cexp(double __complex__)
+  -> EXTERN: (168,429) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,465) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (168,485) cexp(double __complex__)
+  -> EXTERN: (168,492) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (168,528) cexp(double __complex__)
+  -> EXTERN: (168,535) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (169,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (169,44) cexp(double __complex__)
+  -> EXTERN: (169,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (169,71) cexp(double __complex__)
+  -> EXTERN: (169,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (169,106) cexp(double __complex__)
+  -> EXTERN: (169,113) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,13) cexp(double __complex__)
+  -> EXTERN: (172,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (172,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (172,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (172,132) cexp(double __complex__)
+  -> EXTERN: (172,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (172,197) cexp(double __complex__)
+  -> EXTERN: (172,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,240) cexp(double __complex__)
+  -> EXTERN: (172,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,284) cexp(double __complex__)
+  -> EXTERN: (172,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (172,315) cexp(double __complex__)
+  -> EXTERN: (172,322) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (175,23) besselJ(int, double __complex__)
+  -> EXTERN: (175,44) besselJ(int, double __complex__)
+  -> EXTERN: (175,65) besselJ(int, double __complex__)
+  -> EXTERN: (175,86) besselJ(int, double __complex__)
+  -> EXTERN: (175,113) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(172,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(172,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(172,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(172,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(172,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(172,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(168,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(168,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(168,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(168,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(169,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(169,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(165,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(165,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(165,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(165,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(165,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(165,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(175,108):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(175,108):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(175,113):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(175,113):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matpxy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpxy(double __complex__, void *)) [11/24=45.8%] scattering.c(178,55)
+  -> EXTERN: (183,20) cos(double)
+  -> EXTERN: (184,20) sin(double)
+  -> EXTERN: (188,8) index_finder(Sys *, double)
+  -> EXTERN: (190,39) acos(double)
+  -> EXTERN: (192,39) acos(double)
+  -> EXTERN: (194,39) acos(double)
+  -> EXTERN: (196,39) acos(double)
+  -> EXTERN: (199,13) cexp(double __complex__)
+  -> EXTERN: (199,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (199,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (199,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (199,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (199,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (199,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (199,132) cexp(double __complex__)
+  -> EXTERN: (199,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (199,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (199,197) cexp(double __complex__)
+  -> EXTERN: (199,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (199,239) cexp(double __complex__)
+  -> EXTERN: (199,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (199,282) cexp(double __complex__)
+  -> EXTERN: (199,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (199,312) cexp(double __complex__)
+  -> EXTERN: (199,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (202,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (202,67) cexp(double __complex__)
+  -> EXTERN: (202,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (202,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (202,151) cexp(double __complex__)
+  -> EXTERN: (202,158) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,203) cexp(double __complex__)
+  -> EXTERN: (202,210) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,255) cexp(double __complex__)
+  -> EXTERN: (202,262) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,307) cexp(double __complex__)
+  -> EXTERN: (202,314) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,360) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (202,380) cexp(double __complex__)
+  -> EXTERN: (202,387) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,422) cexp(double __complex__)
+  -> EXTERN: (202,429) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,465) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (202,485) cexp(double __complex__)
+  -> EXTERN: (202,492) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (202,528) cexp(double __complex__)
+  -> EXTERN: (202,535) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (203,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (203,44) cexp(double __complex__)
+  -> EXTERN: (203,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (203,71) cexp(double __complex__)
+  -> EXTERN: (203,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (203,106) cexp(double __complex__)
+  -> EXTERN: (203,113) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,13) cexp(double __complex__)
+  -> EXTERN: (206,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (206,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (206,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (206,132) cexp(double __complex__)
+  -> EXTERN: (206,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (206,197) cexp(double __complex__)
+  -> EXTERN: (206,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,240) cexp(double __complex__)
+  -> EXTERN: (206,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,284) cexp(double __complex__)
+  -> EXTERN: (206,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (206,315) cexp(double __complex__)
+  -> EXTERN: (206,322) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (209,22) besselJ(int, double __complex__)
+  -> EXTERN: (209,43) besselJ(int, double __complex__)
+  -> EXTERN: (209,64) besselJ(int, double __complex__)
+  -> EXTERN: (209,85) besselJ(int, double __complex__)
+  -> EXTERN: (209,107) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(206,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(206,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(206,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(206,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(206,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(206,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(202,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(202,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(202,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(202,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(203,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(203,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(199,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(199,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(199,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(199,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(199,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(199,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(209,123):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(209,123):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(209,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(209,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(209,141):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(209,141):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(209,158):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(209,158):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(209,174):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(209,174):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matpxz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpxz(double __complex__, void *)) [12/24=50.0%] scattering.c(216,55)
+  -> EXTERN: (225,8) index_finder(Sys *, double)
+  -> EXTERN: (226,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (229,13) cexp(double __complex__)
+  -> EXTERN: (229,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (229,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (229,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (229,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (229,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (229,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (229,132) cexp(double __complex__)
+  -> EXTERN: (229,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (229,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (229,197) cexp(double __complex__)
+  -> EXTERN: (229,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (229,239) cexp(double __complex__)
+  -> EXTERN: (229,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (229,282) cexp(double __complex__)
+  -> EXTERN: (229,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (229,312) cexp(double __complex__)
+  -> EXTERN: (229,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (232,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (232,67) cexp(double __complex__)
+  -> EXTERN: (232,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (232,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (232,152) cexp(double __complex__)
+  -> EXTERN: (232,159) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,204) cexp(double __complex__)
+  -> EXTERN: (232,211) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,256) cexp(double __complex__)
+  -> EXTERN: (232,263) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,308) cexp(double __complex__)
+  -> EXTERN: (232,315) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,361) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (232,381) cexp(double __complex__)
+  -> EXTERN: (232,388) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,423) cexp(double __complex__)
+  -> EXTERN: (232,430) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,466) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (232,486) cexp(double __complex__)
+  -> EXTERN: (232,493) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (232,529) cexp(double __complex__)
+  -> EXTERN: (232,536) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (233,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (233,44) cexp(double __complex__)
+  -> EXTERN: (233,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (233,79) cexp(double __complex__)
+  -> EXTERN: (233,86) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,13) cexp(double __complex__)
+  -> EXTERN: (236,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (236,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (236,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (236,132) cexp(double __complex__)
+  -> EXTERN: (236,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (236,197) cexp(double __complex__)
+  -> EXTERN: (236,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,240) cexp(double __complex__)
+  -> EXTERN: (236,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,284) cexp(double __complex__)
+  -> EXTERN: (236,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (236,315) cexp(double __complex__)
+  -> EXTERN: (236,322) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(236,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(236,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(236,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(236,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(236,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(236,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(232,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(232,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(232,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(232,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(233,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(233,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(229,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(229,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(229,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(229,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(229,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(229,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(239,50):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(239,50):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(239,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(239,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matsyx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matsyx(double __complex__, void *)) [13/24=54.2%] scattering.c(242,63)
+  -> EXTERN: (243,9) fsxy(double __complex__, void *)
+
+===========================================================================
+
+Begin optimization report for: Matpyx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpyx(double __complex__, void *)) [14/24=58.3%] scattering.c(246,63)
+  -> EXTERN: (247,9) fpxy(double __complex__, void *)
+
+===========================================================================
+
+Begin optimization report for: Matsyy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matsyy(double __complex__, void *)) [15/24=62.5%] scattering.c(250,55)
+  -> EXTERN: (259,8) index_finder(Sys *, double)
+  -> EXTERN: (260,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (263,13) cexp(double __complex__)
+  -> EXTERN: (263,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (263,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (263,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (263,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (263,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (263,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (263,132) cexp(double __complex__)
+  -> EXTERN: (263,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (263,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (263,197) cexp(double __complex__)
+  -> EXTERN: (263,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (263,239) cexp(double __complex__)
+  -> EXTERN: (263,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (263,282) cexp(double __complex__)
+  -> EXTERN: (263,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (263,312) cexp(double __complex__)
+  -> EXTERN: (263,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (266,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (266,67) cexp(double __complex__)
+  -> EXTERN: (266,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (266,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (266,151) cexp(double __complex__)
+  -> EXTERN: (266,158) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,203) cexp(double __complex__)
+  -> EXTERN: (266,210) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,255) cexp(double __complex__)
+  -> EXTERN: (266,262) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,307) cexp(double __complex__)
+  -> EXTERN: (266,314) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,360) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (266,380) cexp(double __complex__)
+  -> EXTERN: (266,387) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,422) cexp(double __complex__)
+  -> EXTERN: (266,429) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,465) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (266,485) cexp(double __complex__)
+  -> EXTERN: (266,492) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (266,528) cexp(double __complex__)
+  -> EXTERN: (266,535) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (267,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (267,44) cexp(double __complex__)
+  -> EXTERN: (267,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (267,71) cexp(double __complex__)
+  -> EXTERN: (267,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (267,106) cexp(double __complex__)
+  -> EXTERN: (267,113) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,13) cexp(double __complex__)
+  -> EXTERN: (270,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (270,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (270,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (270,132) cexp(double __complex__)
+  -> EXTERN: (270,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (270,197) cexp(double __complex__)
+  -> EXTERN: (270,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,240) cexp(double __complex__)
+  -> EXTERN: (270,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,284) cexp(double __complex__)
+  -> EXTERN: (270,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (270,315) cexp(double __complex__)
+  -> EXTERN: (270,322) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (273,36) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(270,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(270,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(270,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(270,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(270,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(270,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(266,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(266,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(266,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(266,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(267,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(267,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(263,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(263,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(263,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(263,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(263,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(263,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(273,31):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(273,31):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(273,36):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(273,36):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matpyy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpyy(double __complex__, void *)) [16/24=66.7%] scattering.c(276,55)
+  -> EXTERN: (285,8) index_finder(Sys *, double)
+  -> EXTERN: (286,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (289,13) cexp(double __complex__)
+  -> EXTERN: (289,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (289,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (289,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (289,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (289,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (289,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (289,132) cexp(double __complex__)
+  -> EXTERN: (289,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (289,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (289,197) cexp(double __complex__)
+  -> EXTERN: (289,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (289,239) cexp(double __complex__)
+  -> EXTERN: (289,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (289,282) cexp(double __complex__)
+  -> EXTERN: (289,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (289,312) cexp(double __complex__)
+  -> EXTERN: (289,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (292,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (292,67) cexp(double __complex__)
+  -> EXTERN: (292,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (292,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (292,151) cexp(double __complex__)
+  -> EXTERN: (292,158) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,203) cexp(double __complex__)
+  -> EXTERN: (292,210) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,255) cexp(double __complex__)
+  -> EXTERN: (292,262) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,307) cexp(double __complex__)
+  -> EXTERN: (292,314) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,360) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (292,380) cexp(double __complex__)
+  -> EXTERN: (292,387) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,422) cexp(double __complex__)
+  -> EXTERN: (292,429) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,465) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (292,485) cexp(double __complex__)
+  -> EXTERN: (292,492) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (292,528) cexp(double __complex__)
+  -> EXTERN: (292,535) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (293,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (293,44) cexp(double __complex__)
+  -> EXTERN: (293,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (293,71) cexp(double __complex__)
+  -> EXTERN: (293,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (293,106) cexp(double __complex__)
+  -> EXTERN: (293,113) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,13) cexp(double __complex__)
+  -> EXTERN: (296,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (296,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (296,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (296,132) cexp(double __complex__)
+  -> EXTERN: (296,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (296,197) cexp(double __complex__)
+  -> EXTERN: (296,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,240) cexp(double __complex__)
+  -> EXTERN: (296,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,284) cexp(double __complex__)
+  -> EXTERN: (296,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (296,315) cexp(double __complex__)
+  -> EXTERN: (296,322) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (299,31) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(296,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(296,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(296,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(296,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(296,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(296,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(292,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(292,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(292,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(292,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(293,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(293,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(289,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(289,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(289,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(289,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(289,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(289,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(299,47):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(299,47):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(299,56):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(299,56):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(299,65):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(299,65):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(299,82):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(299,82):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(299,98):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(299,98):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matsyz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matsyz(double __complex__, void *)) [17/24=70.8%] scattering.c(302,56)
+
+===========================================================================
+
+Begin optimization report for: Matszx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matszx(double __complex__, void *)) [18/24=75.0%] scattering.c(306,56)
+
+===========================================================================
+
+Begin optimization report for: Matpzx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpzx(double __complex__, void *)) [19/24=79.2%] scattering.c(310,55)
+  -> EXTERN: (319,8) index_finder(Sys *, double)
+  -> EXTERN: (320,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (323,13) cexp(double __complex__)
+  -> EXTERN: (323,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (323,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (323,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (323,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (323,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (323,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (323,132) cexp(double __complex__)
+  -> EXTERN: (323,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (323,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (323,197) cexp(double __complex__)
+  -> EXTERN: (323,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (323,239) cexp(double __complex__)
+  -> EXTERN: (323,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (323,282) cexp(double __complex__)
+  -> EXTERN: (323,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (323,312) cexp(double __complex__)
+  -> EXTERN: (323,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (326,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (326,67) cexp(double __complex__)
+  -> EXTERN: (326,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (326,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (326,152) cexp(double __complex__)
+  -> EXTERN: (326,159) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,204) cexp(double __complex__)
+  -> EXTERN: (326,211) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,256) cexp(double __complex__)
+  -> EXTERN: (326,263) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,308) cexp(double __complex__)
+  -> EXTERN: (326,315) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,361) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (326,381) cexp(double __complex__)
+  -> EXTERN: (326,388) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,423) cexp(double __complex__)
+  -> EXTERN: (326,430) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,466) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (326,486) cexp(double __complex__)
+  -> EXTERN: (326,493) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (326,529) cexp(double __complex__)
+  -> EXTERN: (326,536) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (327,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (327,44) cexp(double __complex__)
+  -> EXTERN: (327,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (327,79) cexp(double __complex__)
+  -> EXTERN: (327,86) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,13) cexp(double __complex__)
+  -> EXTERN: (330,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (330,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (330,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (330,132) cexp(double __complex__)
+  -> EXTERN: (330,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (330,197) cexp(double __complex__)
+  -> EXTERN: (330,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,240) cexp(double __complex__)
+  -> EXTERN: (330,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,284) cexp(double __complex__)
+  -> EXTERN: (330,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (330,315) cexp(double __complex__)
+  -> EXTERN: (330,322) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(330,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(330,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(330,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(330,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(330,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(330,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(326,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(326,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(326,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(326,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(327,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(327,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(323,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(323,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(323,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(323,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(323,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(323,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(333,55):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(333,55):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(333,72):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(333,72):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matszy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matszy(double __complex__, void *)) [20/24=83.3%] scattering.c(337,56)
+
+===========================================================================
+
+Begin optimization report for: Matpzy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpzy(double __complex__, void *)) [21/24=87.5%] scattering.c(342,55)
+  -> EXTERN: (351,8) index_finder(Sys *, double)
+  -> EXTERN: (352,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (355,13) cexp(double __complex__)
+  -> EXTERN: (355,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (355,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (355,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (355,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (355,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (355,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (355,132) cexp(double __complex__)
+  -> EXTERN: (355,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (355,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (355,197) cexp(double __complex__)
+  -> EXTERN: (355,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (355,239) cexp(double __complex__)
+  -> EXTERN: (355,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (355,282) cexp(double __complex__)
+  -> EXTERN: (355,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (355,312) cexp(double __complex__)
+  -> EXTERN: (355,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (358,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (358,67) cexp(double __complex__)
+  -> EXTERN: (358,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (358,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (358,152) cexp(double __complex__)
+  -> EXTERN: (358,159) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,204) cexp(double __complex__)
+  -> EXTERN: (358,211) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,256) cexp(double __complex__)
+  -> EXTERN: (358,263) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,308) cexp(double __complex__)
+  -> EXTERN: (358,315) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,361) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (358,381) cexp(double __complex__)
+  -> EXTERN: (358,388) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,423) cexp(double __complex__)
+  -> EXTERN: (358,430) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,466) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (358,486) cexp(double __complex__)
+  -> EXTERN: (358,493) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (358,529) cexp(double __complex__)
+  -> EXTERN: (358,536) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (359,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (359,44) cexp(double __complex__)
+  -> EXTERN: (359,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (359,79) cexp(double __complex__)
+  -> EXTERN: (359,86) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,13) cexp(double __complex__)
+  -> EXTERN: (362,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (362,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (362,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (362,132) cexp(double __complex__)
+  -> EXTERN: (362,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (362,197) cexp(double __complex__)
+  -> EXTERN: (362,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,240) cexp(double __complex__)
+  -> EXTERN: (362,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,284) cexp(double __complex__)
+  -> EXTERN: (362,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (362,315) cexp(double __complex__)
+  -> EXTERN: (362,322) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(362,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(362,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(362,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(362,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(362,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(362,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(358,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(358,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(358,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(358,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(359,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(359,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(355,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(355,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(355,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(355,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(355,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(355,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(365,37):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(365,37):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(365,46):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(365,46):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(365,55):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(365,55):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(365,72):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(365,72):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Matszz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matszz(double __complex__, void *)) [22/24=91.7%] scattering.c(368,56)
+
+===========================================================================
+
+Begin optimization report for: Matpzz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Matpzz(double __complex__, void *)) [23/24=95.8%] scattering.c(372,55)
+  -> EXTERN: (381,8) index_finder(Sys *, double)
+  -> EXTERN: (382,13) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (385,13) cexp(double __complex__)
+  -> EXTERN: (385,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (385,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (385,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (385,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (385,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (385,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (385,132) cexp(double __complex__)
+  -> EXTERN: (385,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (385,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (385,197) cexp(double __complex__)
+  -> EXTERN: (385,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (385,239) cexp(double __complex__)
+  -> EXTERN: (385,246) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (385,282) cexp(double __complex__)
+  -> EXTERN: (385,289) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (385,312) cexp(double __complex__)
+  -> EXTERN: (385,319) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,13) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,29) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (388,48) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (388,67) cexp(double __complex__)
+  -> EXTERN: (388,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,112) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (388,131) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (388,151) cexp(double __complex__)
+  -> EXTERN: (388,158) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,203) cexp(double __complex__)
+  -> EXTERN: (388,210) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,255) cexp(double __complex__)
+  -> EXTERN: (388,262) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,307) cexp(double __complex__)
+  -> EXTERN: (388,314) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,360) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (388,380) cexp(double __complex__)
+  -> EXTERN: (388,387) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,422) cexp(double __complex__)
+  -> EXTERN: (388,429) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,465) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (388,485) cexp(double __complex__)
+  -> EXTERN: (388,492) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (388,528) cexp(double __complex__)
+  -> EXTERN: (388,535) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (389,18) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (389,44) cexp(double __complex__)
+  -> EXTERN: (389,51) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (389,71) cexp(double __complex__)
+  -> EXTERN: (389,78) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (389,106) cexp(double __complex__)
+  -> EXTERN: (389,113) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,13) cexp(double __complex__)
+  -> EXTERN: (392,30) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,43) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,58) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,71) Gamma(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (392,94) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (392,113) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (392,132) cexp(double __complex__)
+  -> EXTERN: (392,143) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,177) Fres(Sys *, const int, const int, const int, const double __complex__)
+  -> EXTERN: (392,197) cexp(double __complex__)
+  -> EXTERN: (392,204) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,240) cexp(double __complex__)
+  -> EXTERN: (392,247) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,284) cexp(double __complex__)
+  -> EXTERN: (392,291) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (392,315) cexp(double __complex__)
+  -> EXTERN: (392,322) kz(Sys *, const int, const double __complex__)
+  -> EXTERN: (395,67) kz(Sys *, const int, const double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+scattering.c(392,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(392,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(392,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(392,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(392,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(392,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(388,13):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(388,13):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(388,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(388,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(389,18):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(389,18):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(385,58):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(385,58):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(385,71):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(385,71):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(385,132):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(385,132):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(395,67):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(395,67):remark #34048: consider using complex-limited-range option to boost run time performance.
+scattering.c(395,84):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+scattering.c(395,84):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: infinite_f(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (infinite_f(double, void *)) [24/24=100.0%] scattering.c(57,49)
+  -> EXTERN: (63,23) creal(double __complex__)
+  -> EXTERN: (63,29) csqrt(double __complex__)
+  -> EXTERN: (63,61) creal(double __complex__)
+  -> EXTERN: (63,67) csqrt(double __complex__)
+  -> INDIRECT-: (67,29) 
+     [[ Unable to inline indirect callsite  <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at scattering.c(62,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between kmax line 63 and kmax line 63
+   remark #15346: vector dependence: assumed ANTI dependence between kmax line 63 and kmax line 63
+LOOP END
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The indirectly called function must be resolved to its targets before it 
+can be inlined.  Consider compiling with -ipo or -prof-gen followed by 
+-prof-use.
+

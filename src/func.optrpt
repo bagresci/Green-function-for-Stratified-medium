@@ -1,0 +1,1650 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: createSys(parm)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (createSys(parm)) [1/33=3.0%] func.c(10,24)
+  -> EXTERN: (12,5) calloc(size_t, size_t)
+  -> EXTERN: (13,15) printf(const char *__restrict__, ...)
+  -> EXTERN: (13,52) exit(int)
+  -> EXTERN: (14,11) makefield_doublecomplex(int, int)
+
+===========================================================================
+
+Begin optimization report for: kz(Sys *, const int, const double __complex__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (kz(Sys *, const int, const double __complex__)) [2/33=6.1%] func.c(22,74)
+  -> EXTERN: (23,11) csqrt(double __complex__)
+
+===========================================================================
+
+Begin optimization report for: Fres(Sys *, const int, const int, const int, const double __complex__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Fres(Sys *, const int, const int, const int, const double __complex__)) [3/33=9.1%] func.c(27,101)
+  -> INLINE (MANUAL): (28,23) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (28,49) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (28,77) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (28,103) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+func.c(28,103):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(28,103):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Gamma(Sys *, const int, const int, const int, const double __complex__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Gamma(Sys *, const int, const int, const int, const double __complex__)) [4/33=12.1%] func.c(31,101)
+  -> INLINE (MANUAL): (32,23) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (32,49) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (32,79) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (33,18) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (33,53) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+func.c(32,79):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(32,79):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(33,66):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(33,66):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(33,104):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(33,104):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: index_finder(Sys *, double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (index_finder(Sys *, double)) [5/33=15.2%] func.c(37,34)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2)
+   remark #15523: loop was not vectorized: loop control variable i was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+===========================================================================
+
+Begin optimization report for: mul_mat(double __complex__ *, double __complex__ *, double __complex__ *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (mul_mat(double __complex__ *, double __complex__ *, double __complex__ *)) [6/33=18.2%] func.c(45,78)
+
+===========================================================================
+
+Begin optimization report for: ellipse_f(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ellipse_f(double, void *)) [7/33=21.2%] func.c(53,48)
+  -> EXTERN: (64,23) creal(double __complex__)
+  -> EXTERN: (64,29) csqrt(double __complex__)
+  -> EXTERN: (64,61) creal(double __complex__)
+  -> EXTERN: (64,67) csqrt(double __complex__)
+  -> DELETED: (68,9) MPI() (isz = 0) (sz = 4)
+  -> EXTERN: (68,25) cos(double)
+  -> DELETED: (68,29) MPI() (isz = 0) (sz = 4)
+  -> EXTERN: (68,44) sin(double)
+  -> DELETED: (68,48) MPI() (isz = 0) (sz = 4)
+  -> INDIRECT-: (68,67) 
+     [[ Unable to inline indirect callsite  <1>]]
+  -> EXTERN: (68,82) sin(double)
+  -> DELETED: (68,86) MPI() (isz = 0) (sz = 4)
+  -> EXTERN: (68,101) cos(double)
+  -> DELETED: (68,105) MPI() (isz = 0) (sz = 4)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(63,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between kmax line 64 and kmax line 64
+   remark #15346: vector dependence: assumed ANTI dependence between kmax line 64 and kmax line 64
+LOOP END
+===========================================================================
+
+Begin optimization report for: MPI()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (MPI()) [8/33=24.2%] func.c(6,20)
+
+===========================================================================
+
+Begin optimization report for: imag_route1(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (imag_route1(double, void *)) [9/33=27.3%] func.c(73,49)
+  -> EXTERN: (79,23) creal(double __complex__)
+  -> EXTERN: (79,29) csqrt(double __complex__)
+  -> EXTERN: (79,61) creal(double __complex__)
+  -> EXTERN: (79,67) csqrt(double __complex__)
+  -> INDIRECT-: (83,31) 
+     [[ Unable to inline indirect callsite  <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(78,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between kmax line 79 and kmax line 79
+   remark #15346: vector dependence: assumed ANTI dependence between kmax line 79 and kmax line 79
+LOOP END
+===========================================================================
+
+Begin optimization report for: imag_route2(double, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (imag_route2(double, void *)) [10/33=30.3%] func.c(86,49)
+  -> EXTERN: (92,23) creal(double __complex__)
+  -> EXTERN: (92,29) csqrt(double __complex__)
+  -> EXTERN: (92,61) creal(double __complex__)
+  -> EXTERN: (92,67) csqrt(double __complex__)
+  -> INDIRECT-: (96,32) 
+     [[ Unable to inline indirect callsite  <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(91,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between kmax line 92 and kmax line 92
+   remark #15346: vector dependence: assumed ANTI dependence between kmax line 92 and kmax line 92
+LOOP END
+===========================================================================
+
+Begin optimization report for: integral_imag(Sys *, double, double, double, double, double __complex__ (*)(double __complex__, void *))
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (integral_imag(Sys *, double, double, double, double, double __complex__ (*)(double __complex__, void *))) [11/33=33.3%] func.c(99,129)
+  -> EXTERN: (105,17) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (106,17) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (107,17) gauss_legendre_complex(int, double __complex__ (*)(double, void *), void *, double, double)
+  -> EXTERN: (109,11) creal(double __complex__)
+  -> EXTERN: (109,24) cimag(double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+func.c(100,13):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(100,15):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+===========================================================================
+
+Begin optimization report for: Mlow(Sys *, const double __complex__, const int, double __complex__ *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Mlow(Sys *, const double __complex__, const int, double __complex__ *, int)) [12/33=36.4%] func.c(125,82)
+  -> EXTERN: (126,21) ?1memcpy
+  -> (130,3) M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) (isz = 723) (sz = 738)
+     [[ Inlining would exceed -inline-max-size value (738>230) <2>]]
+  -> INLINE: (131,3) mul_mat(double __complex__ *, double __complex__ *, double __complex__ *) (isz = 47) (sz = 56)
+  -> EXTERN: (132,3) memcpy(void *__restrict__, const void *__restrict__, size_t)
+  -> EXTERN: (134,2) memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(129,2)
+   remark #15382: vectorization support: call to function M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) cannot be vectorized   [ func.c(130,3) ]
+   remark #15382: vectorization support: call to function memcpy(void *__restrict__, const void *__restrict__, size_t) cannot be vectorized   [ func.c(132,3) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(126,21):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (16, 0)
+func.c(132,3):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(134,2):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to increase the width of stores
+func.c(134,2):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+===========================================================================
+
+Begin optimization report for: M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *)) [13/33=39.4%] func.c(114,102)
+  -> INLINE (MANUAL): (118,26) Gamma(Sys *, const int, const int, const int, const double __complex__) (isz = 199) (sz = 214)
+    -> INLINE (MANUAL): (32,23) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (32,49) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (32,79) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (33,18) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (33,53) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (119,19) cexp(double __complex__)
+  -> INLINE (MANUAL): (119,29) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (119,42) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (120,19) Fres(Sys *, const int, const int, const int, const double __complex__) (isz = 129) (sz = 144)
+    -> INLINE (MANUAL): (28,23) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (28,49) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (28,77) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (28,103) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (120,38) cexp(double __complex__)
+  -> INLINE (MANUAL): (120,49) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (120,62) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (121,19) Fres(Sys *, const int, const int, const int, const double __complex__) (isz = 129) (sz = 144)
+    -> INLINE (MANUAL): (28,23) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (28,49) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (28,77) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (28,103) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (121,38) cexp(double __complex__)
+  -> INLINE (MANUAL): (121,48) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (121,61) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (122,19) cexp(double __complex__)
+  -> INLINE (MANUAL): (122,30) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (122,43) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Code generation optimizations [cg]
+
+func.c(32,79):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(32,79):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(33,66):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(33,66):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(33,104):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(33,104):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(28,103):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(28,103):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(28,103):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(28,103):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: Mhigh(Sys *, const double __complex__, const int, double __complex__ *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Mhigh(Sys *, const double __complex__, const int, double __complex__ *, int)) [14/33=42.4%] func.c(137,83)
+  -> EXTERN: (138,21) ?1memcpy
+  -> (142,3) M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) (isz = 723) (sz = 738)
+     [[ Inlining would exceed -inline-max-size value (738>230) <2>]]
+  -> INLINE: (143,3) mul_mat(double __complex__ *, double __complex__ *, double __complex__ *) (isz = 47) (sz = 56)
+  -> EXTERN: (144,3) memcpy(void *__restrict__, const void *__restrict__, size_t)
+  -> EXTERN: (146,2) memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(141,2)
+   remark #15523: loop was not vectorized: loop control variable i was found, but loop iteration count cannot be computed before executing the loop
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(138,21):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (16, 0)
+func.c(144,3):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(146,2):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to increase the width of stores
+func.c(146,2):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+===========================================================================
+
+Begin optimization report for: fsxx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fsxx(double __complex__, void *)) [15/33=45.5%] func.c(176,53)
+  -> INLINE: (185,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (186,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (187,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (189,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (189,14) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (190,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (190,13) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (196,24) cexp(double __complex__)
+  -> INLINE (MANUAL): (196,31) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (196,51) cexp(double __complex__)
+  -> INLINE (MANUAL): (196,59) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (196,78) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (198,17) besselJ(int, double __complex__)
+  -> EXTERN: (198,37) sin(double)
+  -> EXTERN: (198,46) sin(double)
+  -> EXTERN: (198,55) besselJ(int, double __complex__)
+  -> EXTERN: (198,75) cos(double)
+  -> EXTERN: (198,94) cexp(double __complex__)
+  -> INLINE (MANUAL): (198,101) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (198,121) cexp(double __complex__)
+  -> INLINE (MANUAL): (198,129) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (198,148) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (201,28) cexp(double __complex__)
+  -> INLINE (MANUAL): (201,35) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (201,55) cexp(double __complex__)
+  -> INLINE (MANUAL): (201,63) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (201,82) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (203,21) besselH1(int, double __complex__)
+  -> EXTERN: (203,42) sin(double)
+  -> EXTERN: (203,51) sin(double)
+  -> EXTERN: (203,60) besselH1(int, double __complex__)
+  -> EXTERN: (203,81) cos(double)
+  -> EXTERN: (203,100) cexp(double __complex__)
+  -> INLINE (MANUAL): (203,107) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (203,127) cexp(double __complex__)
+  -> INLINE (MANUAL): (203,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (203,154) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (206,28) cexp(double __complex__)
+  -> INLINE (MANUAL): (206,35) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (206,55) cexp(double __complex__)
+  -> INLINE (MANUAL): (206,63) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (206,82) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (208,21) besselH2(int, double __complex__)
+  -> EXTERN: (208,42) sin(double)
+  -> EXTERN: (208,51) sin(double)
+  -> EXTERN: (208,60) besselH2(int, double __complex__)
+  -> EXTERN: (208,81) cos(double)
+  -> EXTERN: (208,100) cexp(double __complex__)
+  -> INLINE (MANUAL): (208,107) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (208,127) cexp(double __complex__)
+  -> INLINE (MANUAL): (208,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (208,154) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(185,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(186,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(208,154):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(208,154):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(206,82):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(206,82):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(203,154):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(203,154):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(201,82):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(201,82):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(198,148):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(198,148):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(196,78):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(196,78):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double)) [16/33=48.5%] func.c(151,149)
+  -> INLINE: (154,2) Mlow(Sys *, const double __complex__, const int, double __complex__ *, int) (isz = 100) (sz = 113)
+    -> EXTERN: (126,21) ?1memcpy
+    -> (130,3) M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) (isz = 723) (sz = 738)
+       [[ Inlining would exceed -inline-max-size value (738>230) <2>]]
+    -> INLINE: (131,3) mul_mat(double __complex__ *, double __complex__ *, double __complex__ *) (isz = 47) (sz = 56)
+    -> EXTERN: (132,3) memcpy(void *__restrict__, const void *__restrict__, size_t)
+    -> EXTERN: (134,2) memcpy(void *__restrict__, const void *__restrict__, size_t)
+  -> INLINE: (155,2) Mhigh(Sys *, const double __complex__, const int, double __complex__ *, int) (isz = 111) (sz = 124)
+    -> EXTERN: (138,21) ?1memcpy
+    -> (142,3) M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) (isz = 723) (sz = 738)
+       [[ Inlining would exceed -inline-max-size value (738>230) <2>]]
+    -> INLINE: (143,3) mul_mat(double __complex__ *, double __complex__ *, double __complex__ *) (isz = 47) (sz = 56)
+    -> EXTERN: (144,3) memcpy(void *__restrict__, const void *__restrict__, size_t)
+    -> EXTERN: (146,2) memcpy(void *__restrict__, const void *__restrict__, size_t)
+  -> EXTERN: (157,13) cexp(double __complex__)
+  -> INLINE (MANUAL): (157,20) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (157,46) cexp(double __complex__)
+  -> INLINE (MANUAL): (157,54) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (158,13) cexp(double __complex__)
+  -> INLINE (MANUAL): (158,21) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (158,47) cexp(double __complex__)
+  -> INLINE (MANUAL): (158,54) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (161,14) cexp(double __complex__)
+  -> INLINE (MANUAL): (161,21) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (161,47) cexp(double __complex__)
+  -> INLINE (MANUAL): (161,55) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (162,14) cexp(double __complex__)
+  -> INLINE (MANUAL): (162,22) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (162,48) cexp(double __complex__)
+  -> INLINE (MANUAL): (162,55) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE: (165,3) Mlow(Sys *, const double __complex__, const int, double __complex__ *, int) (isz = 100) (sz = 113)
+    -> EXTERN: (126,21) ?1memcpy
+    -> (130,3) M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) (isz = 723) (sz = 738)
+       [[ Inlining would exceed -inline-max-size value (738>230) <2>]]
+    -> INLINE: (131,3) mul_mat(double __complex__ *, double __complex__ *, double __complex__ *) (isz = 47) (sz = 56)
+    -> EXTERN: (132,3) memcpy(void *__restrict__, const void *__restrict__, size_t)
+    -> EXTERN: (134,2) memcpy(void *__restrict__, const void *__restrict__, size_t)
+  -> INLINE: (170,3) Mhigh(Sys *, const double __complex__, const int, double __complex__ *, int) (isz = 111) (sz = 124)
+    -> EXTERN: (138,21) ?1memcpy
+    -> (142,3) M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) (isz = 723) (sz = 738)
+       [[ Inlining would exceed -inline-max-size value (738>230) <2>]]
+    -> INLINE: (143,3) mul_mat(double __complex__ *, double __complex__ *, double __complex__ *) (isz = 47) (sz = 56)
+    -> EXTERN: (144,3) memcpy(void *__restrict__, const void *__restrict__, size_t)
+    -> EXTERN: (146,2) memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(129,2) inlined into func.c(154,2)
+   remark #15382: vectorization support: call to function M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) cannot be vectorized   [ func.c(130,3) ]
+   remark #15382: vectorization support: call to function memcpy(void *__restrict__, const void *__restrict__, size_t) cannot be vectorized   [ func.c(132,3) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at func.c(141,2) inlined into func.c(155,2)
+   remark #15523: loop was not vectorized: loop control variable i.937 was found, but loop iteration count cannot be computed before executing the loop
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at func.c(129,2) inlined into func.c(165,3)
+   remark #15382: vectorization support: call to function M1(Sys *, const int, const int, const int, const double __complex__, double __complex__ *) cannot be vectorized   [ func.c(130,3) ]
+   remark #15382: vectorization support: call to function memcpy(void *__restrict__, const void *__restrict__, size_t) cannot be vectorized   [ func.c(132,3) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at func.c(141,2) inlined into func.c(170,3)
+   remark #15523: loop was not vectorized: loop control variable i.937 was found, but loop iteration count cannot be computed before executing the loop
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(161,98):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(161,98):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(161,41):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(161,41):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(161,98):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(161,98):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(161,106):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(161,106):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(162,42):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(162,42):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(162,98):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(162,98):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(162,106):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(162,106):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(157,97):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(157,97):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(157,40):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(157,40):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(157,97):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(157,97):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(157,105):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(157,105):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(158,41):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(158,41):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(158,97):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(158,97):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(158,105):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(158,105):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(126,21):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (16, 0)
+func.c(132,3):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(134,2):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(138,21):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (16, 0)
+func.c(144,3):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(146,2):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(126,21):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (16, 0)
+func.c(132,3):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(134,2):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(138,21):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (16, 0)
+func.c(144,3):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+func.c(146,2):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+===========================================================================
+
+Begin optimization report for: fpxx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpxx(double __complex__, void *)) [17/33=51.5%] func.c(212,51)
+  -> INLINE: (222,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (223,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (225,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (227,9) cexp(double __complex__)
+  -> INLINE (MANUAL): (227,17) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (228,8) cexp(double __complex__)
+  -> INLINE (MANUAL): (228,15) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (233,25) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (233,52) cexp(double __complex__)
+  -> INLINE (MANUAL): (233,59) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (233,79) cexp(double __complex__)
+  -> INLINE (MANUAL): (233,87) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (235,24) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (235,45) besselJ(int, double __complex__)
+  -> EXTERN: (235,65) cos(double)
+  -> EXTERN: (235,74) cos(double)
+  -> EXTERN: (235,83) besselJ(int, double __complex__)
+  -> EXTERN: (235,103) cos(double)
+  -> EXTERN: (235,122) cexp(double __complex__)
+  -> INLINE (MANUAL): (235,129) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (235,149) cexp(double __complex__)
+  -> INLINE (MANUAL): (235,157) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (238,29) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (238,56) cexp(double __complex__)
+  -> INLINE (MANUAL): (238,63) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (238,83) cexp(double __complex__)
+  -> INLINE (MANUAL): (238,91) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (241,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (241,49) besselH1(int, double __complex__)
+  -> EXTERN: (241,70) cos(double)
+  -> EXTERN: (241,79) cos(double)
+  -> EXTERN: (241,88) besselH1(int, double __complex__)
+  -> EXTERN: (241,109) cos(double)
+  -> EXTERN: (241,128) cexp(double __complex__)
+  -> INLINE (MANUAL): (241,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (241,155) cexp(double __complex__)
+  -> INLINE (MANUAL): (241,163) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (244,29) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (244,56) cexp(double __complex__)
+  -> INLINE (MANUAL): (244,63) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (244,83) cexp(double __complex__)
+  -> INLINE (MANUAL): (244,91) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (246,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (246,49) besselH2(int, double __complex__)
+  -> EXTERN: (246,70) cos(double)
+  -> EXTERN: (246,79) cos(double)
+  -> EXTERN: (246,88) besselH2(int, double __complex__)
+  -> EXTERN: (246,109) cos(double)
+  -> EXTERN: (246,128) cexp(double __complex__)
+  -> INLINE (MANUAL): (246,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (246,155) cexp(double __complex__)
+  -> INLINE (MANUAL): (246,163) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(222,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(223,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(246,201):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(246,201):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(246,218):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(246,218):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(244,129):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(244,129):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(244,146):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(244,146):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(241,201):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(241,201):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(241,218):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(241,218):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(238,129):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(238,129):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(238,146):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(238,146):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(235,195):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(235,195):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(235,212):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(235,212):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(233,125):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(233,125):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(233,142):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(233,142):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fsxy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fsxy(double __complex__, void *)) [18/33=54.5%] func.c(251,54)
+  -> INLINE: (262,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (263,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (264,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (266,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (266,14) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (267,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (267,13) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (271,18) besselJ(int, double __complex__)
+  -> EXTERN: (271,38) besselJ(int, double __complex__)
+  -> EXTERN: (271,65) sin(double)
+  -> EXTERN: (271,83) cexp(double __complex__)
+  -> INLINE (MANUAL): (271,90) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (271,110) cexp(double __complex__)
+  -> INLINE (MANUAL): (271,118) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (271,137) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (273,22) besselH1(int, double __complex__)
+  -> EXTERN: (273,43) besselH1(int, double __complex__)
+  -> EXTERN: (273,71) sin(double)
+  -> EXTERN: (273,89) cexp(double __complex__)
+  -> INLINE (MANUAL): (273,96) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (273,116) cexp(double __complex__)
+  -> INLINE (MANUAL): (273,124) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (273,143) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (275,22) besselH2(int, double __complex__)
+  -> EXTERN: (275,43) besselH2(int, double __complex__)
+  -> EXTERN: (275,71) sin(double)
+  -> EXTERN: (275,89) cexp(double __complex__)
+  -> INLINE (MANUAL): (275,96) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (275,116) cexp(double __complex__)
+  -> INLINE (MANUAL): (275,124) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (275,143) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(262,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(263,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(275,143):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(275,143):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(273,143):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(273,143):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(271,137):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(271,137):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fpxy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpxy(double __complex__, void *)) [19/33=57.6%] func.c(280,54)
+  -> INLINE: (290,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (291,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (293,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (295,9) cexp(double __complex__)
+  -> INLINE (MANUAL): (295,17) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (296,8) cexp(double __complex__)
+  -> INLINE (MANUAL): (296,15) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (300,24) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (300,45) besselJ(int, double __complex__)
+  -> EXTERN: (300,65) besselJ(int, double __complex__)
+  -> EXTERN: (300,92) sin(double)
+  -> EXTERN: (300,110) cexp(double __complex__)
+  -> INLINE (MANUAL): (300,117) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (300,137) cexp(double __complex__)
+  -> INLINE (MANUAL): (300,145) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (302,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (302,49) besselH1(int, double __complex__)
+  -> EXTERN: (302,70) besselH1(int, double __complex__)
+  -> EXTERN: (302,98) sin(double)
+  -> EXTERN: (302,116) cexp(double __complex__)
+  -> INLINE (MANUAL): (302,123) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (302,143) cexp(double __complex__)
+  -> INLINE (MANUAL): (302,151) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (304,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (304,49) besselH2(int, double __complex__)
+  -> EXTERN: (304,70) besselH2(int, double __complex__)
+  -> EXTERN: (304,98) sin(double)
+  -> EXTERN: (304,118) cexp(double __complex__)
+  -> INLINE (MANUAL): (304,125) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (304,147) cexp(double __complex__)
+  -> INLINE (MANUAL): (304,155) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(290,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(291,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(304,193):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(304,193):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(304,210):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(304,210):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(302,189):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(302,189):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(302,206):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(302,206):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(300,183):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(300,183):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(300,200):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(300,200):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fsxz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fsxz(double __complex__, void *)) [20/33=60.6%] func.c(309,58)
+
+===========================================================================
+
+Begin optimization report for: fpxz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpxz(double __complex__, void *)) [21/33=63.6%] func.c(314,53)
+  -> INLINE: (324,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (325,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (327,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (329,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (329,14) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (330,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (330,13) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (334,76) besselJ(int, double __complex__)
+  -> EXTERN: (334,96) cos(double)
+  -> EXTERN: (334,108) cexp(double __complex__)
+  -> INLINE (MANUAL): (334,115) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (334,135) cexp(double __complex__)
+  -> INLINE (MANUAL): (334,143) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (336,80) besselH1(int, double __complex__)
+  -> EXTERN: (336,101) cos(double)
+  -> EXTERN: (336,113) cexp(double __complex__)
+  -> INLINE (MANUAL): (336,120) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (336,140) cexp(double __complex__)
+  -> INLINE (MANUAL): (336,148) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (338,80) besselH2(int, double __complex__)
+  -> EXTERN: (338,101) cos(double)
+  -> EXTERN: (338,113) cexp(double __complex__)
+  -> INLINE (MANUAL): (338,120) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (338,140) cexp(double __complex__)
+  -> INLINE (MANUAL): (338,148) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(324,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(325,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(338,47):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(338,47):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(338,64):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(338,64):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(336,47):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(336,47):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(336,64):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(336,64):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(334,43):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(334,43):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(334,60):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(334,60):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fsyx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fsyx(double __complex__, void *)) [22/33=66.7%] func.c(343,61)
+  -> INLINE: (344,9) fsxy(double __complex__, void *) (isz = 533) (sz = 546)
+    -> INLINE: (262,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+    -> INLINE: (263,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+    -> (264,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+       [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+    -> EXTERN: (266,6) cexp(double __complex__)
+    -> INLINE (MANUAL): (266,14) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (267,6) cexp(double __complex__)
+    -> INLINE (MANUAL): (267,13) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (271,18) besselJ(int, double __complex__)
+    -> EXTERN: (271,38) besselJ(int, double __complex__)
+    -> EXTERN: (271,65) sin(double)
+    -> EXTERN: (271,83) cexp(double __complex__)
+    -> INLINE (MANUAL): (271,90) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (271,110) cexp(double __complex__)
+    -> INLINE (MANUAL): (271,118) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (271,137) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (273,22) besselH1(int, double __complex__)
+    -> EXTERN: (273,43) besselH1(int, double __complex__)
+    -> EXTERN: (273,71) sin(double)
+    -> EXTERN: (273,89) cexp(double __complex__)
+    -> INLINE (MANUAL): (273,96) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (273,116) cexp(double __complex__)
+    -> INLINE (MANUAL): (273,124) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (273,143) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (275,22) besselH2(int, double __complex__)
+    -> EXTERN: (275,43) besselH2(int, double __complex__)
+    -> EXTERN: (275,71) sin(double)
+    -> EXTERN: (275,89) cexp(double __complex__)
+    -> INLINE (MANUAL): (275,96) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (275,116) cexp(double __complex__)
+    -> INLINE (MANUAL): (275,124) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (275,143) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(344,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(344,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(275,143):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(275,143):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(273,143):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(273,143):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(271,137):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(271,137):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fpyx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpyx(double __complex__, void *)) [23/33=69.7%] func.c(347,61)
+  -> INLINE: (348,9) fpxy(double __complex__, void *) (isz = 616) (sz = 629)
+    -> INLINE: (290,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+    -> INLINE: (291,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+    -> (293,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+       [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+    -> EXTERN: (295,9) cexp(double __complex__)
+    -> INLINE (MANUAL): (295,17) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (296,8) cexp(double __complex__)
+    -> INLINE (MANUAL): (296,15) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (300,24) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (300,45) besselJ(int, double __complex__)
+    -> EXTERN: (300,65) besselJ(int, double __complex__)
+    -> EXTERN: (300,92) sin(double)
+    -> EXTERN: (300,110) cexp(double __complex__)
+    -> INLINE (MANUAL): (300,117) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (300,137) cexp(double __complex__)
+    -> INLINE (MANUAL): (300,145) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (302,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (302,49) besselH1(int, double __complex__)
+    -> EXTERN: (302,70) besselH1(int, double __complex__)
+    -> EXTERN: (302,98) sin(double)
+    -> EXTERN: (302,116) cexp(double __complex__)
+    -> INLINE (MANUAL): (302,123) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (302,143) cexp(double __complex__)
+    -> INLINE (MANUAL): (302,151) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> INLINE (MANUAL): (304,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (304,49) besselH2(int, double __complex__)
+    -> EXTERN: (304,70) besselH2(int, double __complex__)
+    -> EXTERN: (304,98) sin(double)
+    -> EXTERN: (304,118) cexp(double __complex__)
+    -> INLINE (MANUAL): (304,125) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+    -> EXTERN: (304,147) cexp(double __complex__)
+    -> INLINE (MANUAL): (304,155) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+      -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(348,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(348,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(304,193):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(304,193):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(304,210):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(304,210):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(302,189):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(302,189):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(302,206):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(302,206):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(300,183):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(300,183):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(300,200):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(300,200):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fsyy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fsyy(double __complex__, void *)) [24/33=72.7%] func.c(351,54)
+  -> INLINE: (361,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (362,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (363,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (365,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (365,14) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (366,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (366,13) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (374,24) cexp(double __complex__)
+  -> INLINE (MANUAL): (374,31) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (374,51) cexp(double __complex__)
+  -> INLINE (MANUAL): (374,59) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (374,78) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (376,17) besselJ(int, double __complex__)
+  -> EXTERN: (376,37) cos(double)
+  -> EXTERN: (376,46) cos(double)
+  -> EXTERN: (376,55) besselJ(int, double __complex__)
+  -> EXTERN: (376,75) cos(double)
+  -> EXTERN: (376,94) cexp(double __complex__)
+  -> INLINE (MANUAL): (376,101) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (376,121) cexp(double __complex__)
+  -> INLINE (MANUAL): (376,129) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (376,148) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (379,28) cexp(double __complex__)
+  -> INLINE (MANUAL): (379,35) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (379,55) cexp(double __complex__)
+  -> INLINE (MANUAL): (379,63) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (379,82) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (381,21) besselH1(int, double __complex__)
+  -> EXTERN: (381,42) cos(double)
+  -> EXTERN: (381,51) cos(double)
+  -> EXTERN: (381,60) besselH1(int, double __complex__)
+  -> EXTERN: (381,81) cos(double)
+  -> EXTERN: (381,100) cexp(double __complex__)
+  -> INLINE (MANUAL): (381,107) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (381,127) cexp(double __complex__)
+  -> INLINE (MANUAL): (381,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (381,154) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (384,28) cexp(double __complex__)
+  -> INLINE (MANUAL): (384,35) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (384,55) cexp(double __complex__)
+  -> INLINE (MANUAL): (384,63) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (384,82) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (386,21) besselH2(int, double __complex__)
+  -> EXTERN: (386,42) cos(double)
+  -> EXTERN: (386,51) cos(double)
+  -> EXTERN: (386,60) besselH2(int, double __complex__)
+  -> EXTERN: (386,81) cos(double)
+  -> EXTERN: (386,100) cexp(double __complex__)
+  -> INLINE (MANUAL): (386,107) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (386,127) cexp(double __complex__)
+  -> INLINE (MANUAL): (386,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (386,154) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(361,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(362,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(386,154):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(386,154):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(384,82):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(384,82):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(381,154):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(381,154):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(379,82):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(379,82):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(376,148):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(376,148):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(374,78):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(374,78):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fpyy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpyy(double __complex__, void *)) [25/33=75.8%] func.c(390,54)
+  -> INLINE: (400,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (401,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (402,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (404,9) cexp(double __complex__)
+  -> INLINE (MANUAL): (404,17) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (405,8) cexp(double __complex__)
+  -> INLINE (MANUAL): (405,15) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (410,25) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (410,52) cexp(double __complex__)
+  -> INLINE (MANUAL): (410,59) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (410,79) cexp(double __complex__)
+  -> INLINE (MANUAL): (410,87) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (412,24) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (412,45) besselJ(int, double __complex__)
+  -> EXTERN: (412,65) sin(double)
+  -> EXTERN: (412,74) sin(double)
+  -> EXTERN: (412,83) besselJ(int, double __complex__)
+  -> EXTERN: (412,103) cos(double)
+  -> EXTERN: (412,122) cexp(double __complex__)
+  -> INLINE (MANUAL): (412,129) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (412,149) cexp(double __complex__)
+  -> INLINE (MANUAL): (412,157) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (415,29) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (415,56) cexp(double __complex__)
+  -> INLINE (MANUAL): (415,63) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (415,83) cexp(double __complex__)
+  -> INLINE (MANUAL): (415,91) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (417,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (417,49) besselH1(int, double __complex__)
+  -> EXTERN: (417,70) sin(double)
+  -> EXTERN: (417,79) sin(double)
+  -> EXTERN: (417,88) besselH1(int, double __complex__)
+  -> EXTERN: (417,109) cos(double)
+  -> EXTERN: (417,128) cexp(double __complex__)
+  -> INLINE (MANUAL): (417,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (417,155) cexp(double __complex__)
+  -> INLINE (MANUAL): (417,163) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (420,25) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (420,52) cexp(double __complex__)
+  -> INLINE (MANUAL): (420,59) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (420,79) cexp(double __complex__)
+  -> INLINE (MANUAL): (420,87) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (422,28) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (422,49) besselH2(int, double __complex__)
+  -> EXTERN: (422,70) sin(double)
+  -> EXTERN: (422,79) sin(double)
+  -> EXTERN: (422,88) besselH2(int, double __complex__)
+  -> EXTERN: (422,109) cos(double)
+  -> EXTERN: (422,128) cexp(double __complex__)
+  -> INLINE (MANUAL): (422,135) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (422,155) cexp(double __complex__)
+  -> INLINE (MANUAL): (422,163) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(400,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(401,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(422,201):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(422,201):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(422,218):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(422,218):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(420,125):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(420,125):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(420,142):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(420,142):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(417,201):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(417,201):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(417,218):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(417,218):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(415,129):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(415,129):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(415,146):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(415,146):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(412,195):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(412,195):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(412,212):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(412,212):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(410,125):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(410,125):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(410,142):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(410,142):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fsyz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fsyz(double __complex__, void *)) [26/33=78.8%] func.c(427,54)
+
+===========================================================================
+
+Begin optimization report for: fpyz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpyz(double __complex__, void *)) [27/33=81.8%] func.c(432,51)
+  -> INLINE: (443,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (444,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (445,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (447,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (447,14) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (448,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (448,13) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (453,76) besselJ(int, double __complex__)
+  -> EXTERN: (453,96) sin(double)
+  -> EXTERN: (453,108) cexp(double __complex__)
+  -> INLINE (MANUAL): (453,115) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (453,135) cexp(double __complex__)
+  -> INLINE (MANUAL): (453,143) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (455,80) besselH1(int, double __complex__)
+  -> EXTERN: (455,101) sin(double)
+  -> EXTERN: (455,113) cexp(double __complex__)
+  -> INLINE (MANUAL): (455,120) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (455,140) cexp(double __complex__)
+  -> INLINE (MANUAL): (455,148) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (457,80) besselH2(int, double __complex__)
+  -> EXTERN: (457,101) sin(double)
+  -> EXTERN: (457,113) cexp(double __complex__)
+  -> INLINE (MANUAL): (457,120) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (457,140) cexp(double __complex__)
+  -> INLINE (MANUAL): (457,148) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(443,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(444,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(457,47):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(457,47):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(457,64):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(457,64):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(455,47):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(455,47):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(455,64):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(455,64):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(453,43):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(453,43):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(453,60):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(453,60):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fszx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fszx(double __complex__, void *)) [28/33=84.8%] func.c(462,54)
+
+===========================================================================
+
+Begin optimization report for: fpzx(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpzx(double __complex__, void *)) [29/33=87.9%] func.c(467,51)
+  -> INLINE: (478,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (479,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (480,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (482,9) cexp(double __complex__)
+  -> INLINE (MANUAL): (482,17) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (483,8) cexp(double __complex__)
+  -> INLINE (MANUAL): (483,15) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (487,88) besselJ(int, double __complex__)
+  -> EXTERN: (487,108) cos(double)
+  -> EXTERN: (487,120) cexp(double __complex__)
+  -> INLINE (MANUAL): (487,127) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (487,147) cexp(double __complex__)
+  -> INLINE (MANUAL): (487,155) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (489,92) besselH1(int, double __complex__)
+  -> EXTERN: (489,113) cos(double)
+  -> EXTERN: (489,125) cexp(double __complex__)
+  -> INLINE (MANUAL): (489,132) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (489,152) cexp(double __complex__)
+  -> INLINE (MANUAL): (489,160) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (491,92) besselH2(int, double __complex__)
+  -> EXTERN: (491,113) cos(double)
+  -> EXTERN: (491,125) cexp(double __complex__)
+  -> INLINE (MANUAL): (491,132) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (491,152) cexp(double __complex__)
+  -> INLINE (MANUAL): (491,160) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(478,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(479,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(491,59):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(491,59):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(491,76):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(491,76):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(489,59):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(489,59):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(489,76):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(489,76):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(487,55):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(487,55):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(487,72):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(487,72):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fszy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fszy(double __complex__, void *)) [30/33=90.9%] func.c(496,51)
+
+===========================================================================
+
+Begin optimization report for: fpzy(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpzy(double __complex__, void *)) [31/33=93.9%] func.c(501,50)
+  -> INLINE: (511,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (512,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (514,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (516,9) cexp(double __complex__)
+  -> INLINE (MANUAL): (516,17) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (517,8) cexp(double __complex__)
+  -> INLINE (MANUAL): (517,15) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (521,89) besselJ(int, double __complex__)
+  -> EXTERN: (521,109) sin(double)
+  -> EXTERN: (521,121) cexp(double __complex__)
+  -> INLINE (MANUAL): (521,128) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (521,148) cexp(double __complex__)
+  -> INLINE (MANUAL): (521,156) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (523,93) besselH1(int, double __complex__)
+  -> EXTERN: (523,114) sin(double)
+  -> EXTERN: (523,126) cexp(double __complex__)
+  -> INLINE (MANUAL): (523,133) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (523,153) cexp(double __complex__)
+  -> INLINE (MANUAL): (523,161) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (525,93) besselH2(int, double __complex__)
+  -> EXTERN: (525,114) sin(double)
+  -> EXTERN: (525,126) cexp(double __complex__)
+  -> INLINE (MANUAL): (525,133) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (525,153) cexp(double __complex__)
+  -> INLINE (MANUAL): (525,161) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(511,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(512,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(525,60):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(525,60):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(525,77):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(525,77):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(523,60):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(523,60):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(523,77):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(523,77):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(521,56):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(521,56):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(521,73):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(521,73):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+Begin optimization report for: fszz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fszz(double __complex__, void *)) [32/33=97.0%] func.c(529,51)
+
+===========================================================================
+
+Begin optimization report for: fpzz(double __complex__, void *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fpzz(double __complex__, void *)) [33/33=100.0%] func.c(534,51)
+  -> INLINE: (544,8) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> INLINE: (545,9) index_finder(Sys *, double) (isz = 27) (sz = 37)
+  -> (546,2) qspace(Sys *, double __complex__ *, double __complex__ *, const double __complex__, const int, const int, const int, const int, const double) (isz = 790) (sz = 811)
+     [[ Inlining would exceed -inline-max-size value (811>230) <2>]]
+  -> EXTERN: (548,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (548,14) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (549,6) cexp(double __complex__)
+  -> INLINE (MANUAL): (549,13) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (553,32) besselJ(int, double __complex__)
+  -> EXTERN: (553,55) cexp(double __complex__)
+  -> INLINE (MANUAL): (553,62) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (553,82) cexp(double __complex__)
+  -> INLINE (MANUAL): (553,90) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (553,145) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (556,40) cexp(double __complex__)
+  -> INLINE (MANUAL): (556,47) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (556,67) cexp(double __complex__)
+  -> INLINE (MANUAL): (556,75) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (556,130) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (558,30) besselH1(int, double __complex__)
+  -> EXTERN: (558,54) cexp(double __complex__)
+  -> INLINE (MANUAL): (558,61) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (558,81) cexp(double __complex__)
+  -> INLINE (MANUAL): (558,89) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (558,144) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (561,40) cexp(double __complex__)
+  -> INLINE (MANUAL): (561,47) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (561,67) cexp(double __complex__)
+  -> INLINE (MANUAL): (561,75) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (561,130) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (563,36) besselH2(int, double __complex__)
+  -> EXTERN: (563,60) cexp(double __complex__)
+  -> INLINE (MANUAL): (563,67) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> EXTERN: (563,87) cexp(double __complex__)
+  -> INLINE (MANUAL): (563,95) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+  -> INLINE (MANUAL): (563,150) kz(Sys *, const int, const double __complex__) (isz = 20) (sz = 31)
+    -> EXTERN: (23,11) csqrt(double __complex__)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(544,8)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at func.c(40,2) inlined into func.c(545,9)
+   remark #15523: loop was not vectorized: loop control variable i.915 was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+func.c(563,150):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(563,150):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(563,167):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(563,167):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(561,130):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(561,130):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(561,147):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(561,147):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(558,144):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(558,144):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(558,161):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(558,161):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(556,130):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(556,130):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(556,147):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(556,147):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(553,145):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(553,145):remark #34048: consider using complex-limited-range option to boost run time performance.
+func.c(553,162):remark #34046: complex divide implemented using x87 instructions to maintain precision.
+func.c(553,162):remark #34048: consider using complex-limited-range option to boost run time performance.
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The indirectly called function must be resolved to its targets before it 
+can be inlined.  Consider compiling with -ipo or -prof-gen followed by 
+-prof-use.
+
+<2> The function is larger than the inliner would normally inline.  Use the
+    option -inline-max-size to increase the size of any function that would
+    normally be inlined, add "inline __attribute__((always_inline))" to the
+    declaration of the called function, or add "#pragma forceinline" before
+    the call site.
+

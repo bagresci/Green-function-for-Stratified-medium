@@ -1,0 +1,71 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: besselJ(int, double __complex__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (besselJ(int, double __complex__)) [1/4=25.0%] bessel.c(4,1)
+  -> EXTERN: (6,17) creal(double __complex__)
+  -> EXTERN: (7,17) cimag(double __complex__)
+  -> EXTERN: (17,5) zbesj_wrap(double, double, double, int, int, double *, double *, int *, int *)
+  -> EXTERN: (28,6) printf(const char *__restrict__, ...)
+
+===========================================================================
+
+Begin optimization report for: besselY(int, double __complex__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (besselY(int, double __complex__)) [2/4=50.0%] bessel.c(35,1)
+  -> EXTERN: (37,17) creal(double __complex__)
+  -> EXTERN: (38,17) cimag(double __complex__)
+  -> EXTERN: (48,5) zbesy_wrap(double, double, double, int, int, double *, double *, int *, double *, double *, int *)
+  -> EXTERN: (66,9) printf(const char *__restrict__, ...)
+
+===========================================================================
+
+Begin optimization report for: besselH1(int, double __complex__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (besselH1(int, double __complex__)) [3/4=75.0%] bessel.c(72,1)
+  -> EXTERN: (74,17) creal(double __complex__)
+  -> EXTERN: (75,17) cimag(double __complex__)
+  -> EXTERN: (86,5) zbesh_wrap(double, double, double, int, int, int, double *, double *, int *, int *)
+
+===========================================================================
+
+Begin optimization report for: besselH2(int, double __complex__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (besselH2(int, double __complex__)) [4/4=100.0%] bessel.c(102,60)
+  -> EXTERN: (104,17) creal(double __complex__)
+  -> EXTERN: (105,17) cimag(double __complex__)
+  -> EXTERN: (116,5) zbesh_wrap(double, double, double, int, int, int, double *, double *, int *, int *)
+
+===========================================================================

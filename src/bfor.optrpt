@@ -1,0 +1,88 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: ZBESJ_WRAP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESJ_WRAP) [1/7=14.3%] bfor.f90(11,12)
+  -> EXTERN: (31,22) zbesj_
+
+===========================================================================
+
+Begin optimization report for: ZBESY_WRAP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESY_WRAP) [2/7=28.6%] bfor.f90(35,12)
+  -> EXTERN: (56,22) zbesy_
+
+===========================================================================
+
+Begin optimization report for: ZBESI_WRAP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESI_WRAP) [3/7=42.9%] bfor.f90(60,12)
+  -> EXTERN: (80,22) zbesi_
+
+===========================================================================
+
+Begin optimization report for: ZBESK_WRAP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESK_WRAP) [4/7=57.1%] bfor.f90(84,12)
+  -> EXTERN: (104,22) zbesk_
+
+===========================================================================
+
+Begin optimization report for: ZBESH_WRAP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESH_WRAP) [5/7=71.4%] bfor.f90(108,12)
+  -> EXTERN: (128,22) zbesh_
+
+===========================================================================
+
+Begin optimization report for: ZAIRY_WRAP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZAIRY_WRAP) [6/7=85.7%] bfor.f90(132,12)
+  -> EXTERN: (152,22) zairy_
+
+===========================================================================
+
+Begin optimization report for: ZBIRY_WRAP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBIRY_WRAP) [7/7=100.0%] bfor.f90(156,12)
+  -> EXTERN: (176,22) zbiry_
+
+===========================================================================

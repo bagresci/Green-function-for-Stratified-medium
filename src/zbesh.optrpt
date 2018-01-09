@@ -1,0 +1,2255 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: ZBESH
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESH) [1/39=2.6%] zbesh.for(1,18)
+  -> EXTERN: (192,19) d1mach_
+  -> EXTERN: (193,12) i1mach_
+  -> EXTERN: (194,12) i1mach_
+  -> EXTERN: (195,14) d1mach_
+  -> EXTERN: (198,12) i1mach_
+  -> INLINE: (213,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (215,21) i1mach_
+  -> EXTERN: (225,13) d1mach_
+  -> EXTERN: (232,17) log
+  -> (236,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+  -> (253,12) ZBKNU (isz = 2020) (sz = 2045)
+     [[ Inlining would exceed -inline-max-size value (2045>230) <1>]]
+  -> (260,12) ZACON (isz = 733) (sz = 764)
+     [[ Inlining would exceed -inline-max-size value (764>230) <1>]]
+  -> INLINE: (277,12) ZBUNK (isz = 36) (sz = 63)
+    -> (3306,12) ZUNK1 (isz = 1488) (sz = 1515)
+       [[ Inlining would exceed -inline-max-size value (1515>230) <1>]]
+    -> (3314,12) ZUNK2 (isz = 1829) (sz = 1856)
+       [[ Inlining would exceed -inline-max-size value (1856>230) <1>]]
+  -> EXTERN: (299,20) cos
+  -> EXTERN: (300,21) sin
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(310,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between csgnr line 331 and csgnr line 327
+   remark #15346: vector dependence: assumed ANTI dependence between csgnr line 327 and csgnr line 331
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZACON
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZACON) [2/39=5.1%] zbesh.for(4170,18)
+  -> (4202,12) ZBINU (isz = 323) (sz = 352)
+     [[ Inlining would exceed -inline-max-size value (352>230) <1>]]
+  -> (4209,12) ZBKNU (isz = 2020) (sz = 2045)
+     [[ Inlining would exceed -inline-max-size value (2045>230) <1>]]
+  -> EXTERN: (4219,13) cos
+  -> EXTERN: (4220,13) sin
+  -> INLINE: (4221,12) ZMLT (isz = 16) (sz = 31)
+  -> EXTERN: (4229,13) cos
+  -> EXTERN: (4230,13) sin
+  -> EXTERN: (4242,22) d1mach_
+  -> (4244,12) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+  -> INLINE: (4249,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (4250,12) ZMLT (isz = 16) (sz = 31)
+  -> (4263,12) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+  -> INLINE: (4268,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (4269,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (4275,13) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (4297,16) d1mach_
+  -> INLINE: (4298,13) ZABS (isz = 38) (sz = 45)
+  -> (4328,14) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(4313,10)
+   remark #15382: vectorization support: call to function ZS1S2 cannot be vectorized   [ zbesh.for(4328,14) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between c1r line 4320 and c1r line 4328
+   remark #15346: vector dependence: assumed OUTPUT dependence between c1r line 4328 and c1r line 4320
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZBKNU
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBKNU) [3/39=7.7%] zbesh.for(2387,18)
+  -> (2428,13) ZABS (isz = 38) (sz = 45)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> EXTERN: (2437,23) d1mach_
+  -> EXTERN: (2439,16) d1mach_
+  -> (2458,12) ZLOG (isz = 137) (sz = 150)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> INLINE: (2461,12) ZSHCH (isz = 32) (sz = 47)
+    -> EXTERN: (3090,12) sinh
+    -> EXTERN: (3091,12) cosh
+    -> EXTERN: (3092,12) sin
+    -> EXTERN: (3093,12) cos
+  -> EXTERN: (2464,15) sin
+  -> EXTERN: (2472,12) exp
+  -> (2472,18) DGAMLN (isz = 182) (sz = 189)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> INLINE: (2494,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (2497,12) ZDIV (isz = 65) (sz = 80)
+    -> (2245,18) ZABS (isz = 38) (sz = 45)
+       [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> INLINE: (2514,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2541,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (2542,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2549,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2584,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2588,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (2589,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2590,12) ZMLT (isz = 16) (sz = 31)
+  -> (2599,12) ZSQRT (isz = 150) (sz = 161)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> INLINE: (2600,12) ZDIV (isz = 65) (sz = 80)
+    -> (2245,18) ZABS (isz = 38) (sz = 45)
+       [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> EXTERN: (2605,13) exp
+  -> EXTERN: (2606,18) sin
+  -> EXTERN: (2607,17) cos
+  -> INLINE: (2608,12) ZMLT (isz = 16) (sz = 31)
+  -> EXTERN: (2614,12) cos
+  -> EXTERN: (2625,23) i1mach_
+  -> EXTERN: (2626,15) d1mach_
+  -> EXTERN: (2634,12) atan
+  -> EXTERN: (2674,13) log
+  -> EXTERN: (2674,26) cos
+  -> EXTERN: (2674,56) cos
+  -> INLINE: (2710,12) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (2716,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2717,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2727,12) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (2733,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (2736,12) ZDIV (isz = 65) (sz = 80)
+    -> (2245,18) ZABS (isz = 38) (sz = 45)
+       [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> INLINE: (2738,12) ZMLT (isz = 16) (sz = 31)
+  -> EXTERN: (2846,13) exp
+  -> INLINE: (2862,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (2863,16) log
+  -> (2866,14) ZLOG (isz = 137) (sz = 150)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> EXTERN: (2869,15) exp
+  -> EXTERN: (2870,19) cos
+  -> EXTERN: (2871,19) sin
+  -> INLINE: (2872,14) ZUCHK (isz = 20) (sz = 33)
+  -> (2913,12) ZKSCL (isz = 745) (sz = 772)
+     [[ Inlining would exceed -inline-max-size value (772>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(2480,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(2517,7)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form
+LOOP END
+
+LOOP BEGIN at zbesh.for(2552,7)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form
+LOOP END
+
+LOOP BEGIN at zbesh.for(2648,10)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form
+LOOP END
+
+LOOP BEGIN at zbesh.for(2689,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between fks line 2703 and fks line 2690
+   remark #15346: vector dependence: assumed ANTI dependence between fks line 2690 and fks line 2703
+LOOP END
+
+LOOP BEGIN at zbesh.for(2853,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(2763,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between str line 2775 and str line 2764
+LOOP END
+
+LOOP BEGIN at zbesh.for(2809,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s2r line 2831 and s2r line 2812
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZLOG
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZLOG) [4/39=10.3%] zbesh.for(2315,18)
+  -> EXTERN: (2333,16) atan
+  -> EXTERN: (2339,12) log
+  -> EXTERN: (2343,12) log
+  -> EXTERN: (2346,12) log
+  -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (2351,12) log
+
+===========================================================================
+
+Begin optimization report for: DGAMLN
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (DGAMLN) [5/39=12.8%] zbesh.for(4485,33)
+  -> EXTERN: (4626,15) d1mach_
+  -> EXTERN: (4628,13) i1mach_
+  -> EXTERN: (4629,13) d1mach_
+  -> EXTERN: (4656,13) log
+  -> EXTERN: (4665,13) log
+  -> EXTERN: (4666,35) log
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(4648,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10)
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.611
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 4.500 
+   remark #15478: estimated potential speedup: 2.360 
+   remark #15487: type converts: 2 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10)
+<Remainder loop for vectorization>
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 3.556
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZABS
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZABS) [6/39=15.4%] zbesh.for(2358,33)
+
+===========================================================================
+
+Begin optimization report for: ZKSCL
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZKSCL) [7/39=17.9%] zbesh.for(2956,18)
+  -> INLINE: (2984,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (2985,22) log
+  -> INLINE: (2990,14) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> EXTERN: (2993,15) exp
+  -> EXTERN: (2994,19) cos
+  -> EXTERN: (2995,19) sin
+  -> INLINE: (2996,14) ZUCHK (isz = 20) (sz = 33)
+  -> EXTERN: (3019,13) exp
+  -> INLINE: (3037,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (3038,16) log
+  -> INLINE: (3044,14) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> EXTERN: (3047,15) exp
+  -> EXTERN: (3048,19) cos
+  -> EXTERN: (3049,19) sin
+  -> INLINE: (3050,14) ZUCHK (isz = 20) (sz = 33)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(2979,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between nz line 2986 and nz line 3001
+   remark #15346: vector dependence: assumed OUTPUT dependence between nz line 3001 and nz line 2986
+   remark #25015: Estimate of max trip count of loop=2
+LOOP END
+
+LOOP BEGIN at zbesh.for(3027,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(3072,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3072,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3073,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3074,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.583
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.250 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(3072,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3072,10)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZUNK2
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNK2) [8/39=20.5%] zbesh.for(6155,18)
+  -> EXTERN: (6215,23) d1mach_
+  -> EXTERN: (6217,16) d1mach_
+  -> EXTERN: (6232,13) cos
+  -> EXTERN: (6233,13) sin
+  -> (6257,14) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (6263,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6283,16) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6284,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6285,21) log
+  -> EXTERN: (6285,41) log
+  -> (6297,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> (6298,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> EXTERN: (6309,15) exp
+  -> EXTERN: (6310,19) cos
+  -> EXTERN: (6311,19) sin
+  -> INLINE: (6316,14) ZUCHK (isz = 20) (sz = 33)
+  -> INLINE: (6351,20) ZABS (isz = 38) (sz = 45)
+  -> (6367,12) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (6372,17) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6388,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6389,17) log
+  -> EXTERN: (6455,15) cos
+  -> EXTERN: (6456,15) sin
+  -> (6506,14) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (6513,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6533,16) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6534,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6535,21) log
+  -> EXTERN: (6535,41) log
+  -> (6541,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> (6542,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> EXTERN: (6551,15) exp
+  -> EXTERN: (6552,19) cos
+  -> EXTERN: (6553,19) sin
+  -> INLINE: (6558,14) ZUCHK (isz = 20) (sz = 33)
+  -> (6576,14) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+  -> (6631,14) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(6251,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(6410,10)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(6419,9) ]
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(6420,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s1r line 6430 and s1r line 6415
+LOOP END
+
+LOOP BEGIN at zbesh.for(6398,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(6398,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(6399,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(6400,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.583
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.250 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(6398,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(6398,10)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(6481,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(6616,10)
+   remark #15382: vectorization support: call to function ZS1S2 cannot be vectorized   [ zbesh.for(6631,14) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between c2r line 6617 and c2r line 6631
+   remark #15346: vector dependence: assumed OUTPUT dependence between c2r line 6631 and c2r line 6617
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZAIRY
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZAIRY) [9/39=23.1%] zbesh.for(1458,18)
+  -> INLINE: (1606,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (1607,19) d1mach_
+  -> INLINE: (1663,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> INLINE: (1666,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (1682,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> INLINE: (1685,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> EXTERN: (1705,12) i1mach_
+  -> EXTERN: (1706,12) i1mach_
+  -> EXTERN: (1707,14) d1mach_
+  -> EXTERN: (1710,12) i1mach_
+  -> EXTERN: (1716,14) log
+  -> EXTERN: (1721,21) i1mach_
+  -> EXTERN: (1723,12) pow
+  -> INLINE: (1727,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> (1764,12) ZACAI (isz = 292) (sz = 321)
+     [[ Inlining would exceed -inline-max-size value (321>253) <1>]]
+  -> (1780,12) ZBKNU (isz = 2020) (sz = 2045)
+     [[ Inlining would exceed -inline-max-size value (2045>230) <1>]]
+  -> EXTERN: (1812,19) d1mach_
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(1639,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZACAI
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZACAI) [10/39=25.6%] zbesh.for(4674,18)
+  -> INLINE: (4703,12) ZABS (isz = 38) (sz = 45)
+  -> (4712,12) ZSERI (isz = 1050) (sz = 1075)
+     [[ Inlining would exceed -inline-max-size value (1075>230) <1>]]
+  -> (4719,12) ZASYI (isz = 862) (sz = 889)
+     [[ Inlining would exceed -inline-max-size value (889>230) <1>]]
+  -> (4727,12) ZMLRI (isz = 1551) (sz = 1572)
+     [[ Inlining would exceed -inline-max-size value (1572>230) <1>]]
+  -> (4733,12) ZBKNU (isz = 2020) (sz = 2045)
+     [[ Inlining would exceed -inline-max-size value (2045>230) <1>]]
+  -> EXTERN: (4741,22) sin
+  -> EXTERN: (4742,21) cos
+  -> EXTERN: (4750,15) cos
+  -> EXTERN: (4751,15) sin
+  -> EXTERN: (4762,22) d1mach_
+  -> (4763,12) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+
+===========================================================================
+
+Begin optimization report for: ZSERI
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZSERI) [11/39=28.2%] zbesh.for(3618,18)
+  -> INLINE: (3645,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (3647,20) d1mach_
+  -> INLINE: (3657,12) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (3659,13) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3661,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> INLINE: (3670,12) DGAMLN (isz = 182) (sz = 189)
+    -> EXTERN: (4626,15) d1mach_
+    -> EXTERN: (4628,13) i1mach_
+    -> EXTERN: (4629,13) d1mach_
+    -> EXTERN: (4656,13) log
+    -> EXTERN: (4665,13) log
+    -> EXTERN: (4666,35) log
+  -> EXTERN: (3689,12) exp
+  -> EXTERN: (3691,18) cos
+  -> EXTERN: (3692,18) sin
+  -> INLINE: (3724,14) ZUCHK (isz = 20) (sz = 33)
+  -> INLINE: (3731,14) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3778,13) ZABS (isz = 38) (sz = 45)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(4648,10) inlined into zbesh.for(3670,12)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3670,12)
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.611
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 4.500 
+   remark #15478: estimated potential speedup: 2.360 
+   remark #15487: type converts: 2 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3670,12)
+<Remainder loop for vectorization>
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 3.556
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3670,12)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3695,10)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   remark #25015: Estimate of max trip count of loop=2
+
+   LOOP BEGIN at zbesh.for(3705,9)
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form
+   LOOP END
+LOOP END
+
+LOOP BEGIN at zbesh.for(3765,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(3746,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between yr line 3747 and yr line 3747
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 6
+LOOP END
+
+LOOP BEGIN at zbesh.for(3796,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3796,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3797,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3798,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.583
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.250 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(3796,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3796,10)
+<Remainder loop for vectorization>
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at zbesh.for(3680,13)
+   remark #15341: loop was not vectorized: nonstandard loop is not a vectorization candidate
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZASYI
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZASYI) [12/39=30.8%] zbesh.for(3809,18)
+  -> INLINE: (3834,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (3835,20) d1mach_
+  -> INLINE: (3847,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> INLINE: (3859,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (3860,12) ZMLT (isz = 16) (sz = 31)
+  -> EXTERN: (3884,13) sin
+  -> EXTERN: (3885,12) cos
+  -> INLINE: (3909,16) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3932,14) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (3933,14) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (3934,14) ZMLT (isz = 16) (sz = 31)
+  -> INLINE: (3961,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(3954,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between yr line 3955 and yr line 3955
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 6
+LOOP END
+
+LOOP BEGIN at zbesh.for(3962,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3962,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3963,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3963,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3964,9) ]
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3964,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3964,9) ]
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3965,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.274
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 2 
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 26 
+   remark #15477: vector loop cost: 10.500 
+   remark #15478: estimated potential speedup: 2.410 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(3962,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3962,10)
+<Remainder loop for vectorization>
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(3963,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3963,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3964,9) ]
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(3964,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3964,9) ]
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(3965,9) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 1.000
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at zbesh.for(3962,10)
+<Remainder loop for vectorization>
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at zbesh.for(3893,10)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.
+
+   LOOP BEGIN at zbesh.for(3908,12)
+      remark #15341: loop was not vectorized: nonstandard loop is not a vectorization candidate
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZMLRI
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZMLRI) [13/39=33.3%] zbesh.for(3318,18)
+  -> EXTERN: (3337,14) d1mach_
+  -> INLINE: (3339,12) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3373,14) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3406,14) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3409,15) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3411,19) ZABS (isz = 38) (sz = 45)
+  -> (3433,12) DGAMLN (isz = 182) (sz = 189)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> INLINE: (3433,42) DGAMLN (isz = 182) (sz = 189)
+    -> EXTERN: (4626,15) d1mach_
+    -> EXTERN: (4628,13) i1mach_
+    -> EXTERN: (4629,13) d1mach_
+    -> EXTERN: (4656,13) log
+    -> EXTERN: (4665,13) log
+    -> EXTERN: (4666,35) log
+  -> INLINE: (3434,8) DGAMLN (isz = 182) (sz = 189)
+    -> EXTERN: (4626,15) d1mach_
+    -> EXTERN: (4628,13) i1mach_
+    -> EXTERN: (4629,13) d1mach_
+    -> EXTERN: (4656,13) log
+    -> EXTERN: (4665,13) log
+    -> EXTERN: (4666,35) log
+  -> EXTERN: (3435,12) exp
+  -> INLINE: (3493,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> INLINE: (3496,12) DGAMLN (isz = 182) (sz = 189)
+    -> EXTERN: (4626,15) d1mach_
+    -> EXTERN: (4628,13) i1mach_
+    -> EXTERN: (4629,13) d1mach_
+    -> EXTERN: (4656,13) log
+    -> EXTERN: (4665,13) log
+    -> EXTERN: (4666,35) log
+  -> INLINE: (3505,12) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3507,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (3512,12) ZMLT (isz = 16) (sz = 31)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(3397,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(4648,10) inlined into zbesh.for(3433,42)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3433,42)
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.611
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 4.500 
+   remark #15478: estimated potential speedup: 2.360 
+   remark #15487: type converts: 2 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3433,42)
+<Remainder loop for vectorization>
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 3.556
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3433,42)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4648,10) inlined into zbesh.for(3434,8)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3434,8)
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.611
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 4.500 
+   remark #15478: estimated potential speedup: 2.360 
+   remark #15487: type converts: 2 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3434,8)
+<Remainder loop for vectorization>
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 3.556
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3434,8)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3439,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between bk line 3450 and bk line 3447
+   remark #15346: vector dependence: assumed ANTI dependence between bk line 3447 and bk line 3450
+LOOP END
+
+LOOP BEGIN at zbesh.for(3456,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between bk line 3467 and bk line 3464
+   remark #15346: vector dependence: assumed ANTI dependence between bk line 3464 and bk line 3467
+LOOP END
+
+LOOP BEGIN at zbesh.for(3475,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between bk line 3486 and bk line 3483
+   remark #15346: vector dependence: assumed ANTI dependence between bk line 3483 and bk line 3486
+LOOP END
+
+LOOP BEGIN at zbesh.for(4648,10) inlined into zbesh.for(3496,12)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3496,12)
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.611
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 4.500 
+   remark #15478: estimated potential speedup: 2.360 
+   remark #15487: type converts: 2 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3496,12)
+<Remainder loop for vectorization>
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 3.556
+   remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ zbesh.for(4642,7) ]
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at zbesh.for(4662,10) inlined into zbesh.for(3496,12)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3513,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3513,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3514,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3514,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3515,9) ]
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3515,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3515,9) ]
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(3516,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.274
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 2 
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 26 
+   remark #15477: vector loop cost: 10.500 
+   remark #15478: estimated potential speedup: 2.410 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(3513,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(3513,10)
+<Remainder loop for vectorization>
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(3514,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3514,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3515,9) ]
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(3515,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(3515,9) ]
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(3516,9) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 1.000
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at zbesh.for(3513,10)
+<Remainder loop for vectorization>
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at zbesh.for(3364,10)
+   remark #15341: loop was not vectorized: nonstandard loop is not a vectorization candidate
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZUNHJ
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNHJ) [14/39=35.9%] zbesh.for(5013,18)
+  -> EXTERN: (5449,14) d1mach_
+  -> EXTERN: (5452,27) log
+  -> EXTERN: (5468,17) pow
+  -> INLINE: (5473,13) ZABS (isz = 38) (sz = 45)
+  -> (5500,12) ZSQRT (isz = 150) (sz = 161)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> (5501,12) ZSQRT (isz = 150) (sz = 161)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> (5510,12) ZSQRT (isz = 150) (sz = 161)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> (5581,12) ZSQRT (isz = 150) (sz = 161)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> INLINE: (5586,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (5587,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> INLINE: (5597,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (5602,13) atan
+  -> EXTERN: (5605,16) pow
+  -> EXTERN: (5607,18) cos
+  -> EXTERN: (5608,18) sin
+  -> INLINE: (5612,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (5613,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (5616,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> INLINE: (5725,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(5659,10)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at zbesh.for(5665,12)
+   <Distributed chunk1>
+      remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5684,11) ]
+      remark #25426: Loop Distributed (2 way) 
+      remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+      remark #25452: Original Order found to be proper, but by a close margin
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed OUTPUT dependence between zar line 5669 and zar line 5675
+      remark #15346: vector dependence: assumed OUTPUT dependence between zar line 5675 and zar line 5669
+
+      LOOP BEGIN at zbesh.for(5671,14)
+         remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5673,13) ]
+         remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5674,13) ]
+         remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5675,13) ]
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between zar line 5675 and zar line 5673
+         remark #15346: vector dependence: assumed ANTI dependence between zar line 5673 and zar line 5675
+         remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+         remark #25015: Estimate of max trip count of loop=105
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at zbesh.for(5665,12)
+   <Distributed chunk2>
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between przthr line 5686 and przthr line 5682
+      remark #15346: vector dependence: assumed ANTI dependence between przthr line 5682 and przthr line 5686
+      remark #15346: vector dependence: assumed ANTI dependence between przthr line 5682 and przthr line 5686
+      remark #15346: vector dependence: assumed FLOW dependence between przthr line 5686 and przthr line 5682
+      remark #25436: completely unrolled by 2  
+   LOOP END
+
+   LOOP BEGIN at zbesh.for(5695,12)
+      remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5697,11) ]
+      remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5698,11) ]
+      remark #15388: vectorization support: reference crr has aligned access   [ zbesh.for(5697,11) ]
+      remark #15388: vectorization support: reference cri has aligned access   [ zbesh.for(5697,11) ]
+      remark #15388: vectorization support: reference crr has aligned access   [ zbesh.for(5698,11) ]
+      remark #15388: vectorization support: reference cri has aligned access   [ zbesh.for(5698,11) ]
+      remark #15305: vectorization support: vector length 2
+      remark #15309: vectorization support: normalized vectorization overhead 1.267
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15448: unmasked aligned unit stride loads: 3 
+      remark #15460: masked strided loads: 4 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 27 
+      remark #15477: vector loop cost: 15.000 
+      remark #15478: estimated potential speedup: 1.260 
+      remark #15488: --- end vector loop cost summary ---
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 4
+      remark #25015: Estimate of max trip count of loop=7
+   LOOP END
+
+   LOOP BEGIN at zbesh.for(5709,12)
+      remark #15388: vectorization support: reference drr has aligned access   [ zbesh.for(5711,11) ]
+      remark #15388: vectorization support: reference dri has aligned access   [ zbesh.for(5711,11) ]
+      remark #15388: vectorization support: reference drr has aligned access   [ zbesh.for(5712,11) ]
+      remark #15388: vectorization support: reference dri has aligned access   [ zbesh.for(5712,11) ]
+      remark #15305: vectorization support: vector length 2
+      remark #15309: vectorization support: normalized vectorization overhead 1.267
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15448: unmasked aligned unit stride loads: 3 
+      remark #15460: masked strided loads: 4 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 27 
+      remark #15477: vector loop cost: 15.000 
+      remark #15478: estimated potential speedup: 1.260 
+      remark #15488: --- end vector loop cost summary ---
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 4
+      remark #25015: Estimate of max trip count of loop=7
+   LOOP END
+LOOP END
+
+LOOP BEGIN at zbesh.for(5485,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 9
+LOOP END
+
+LOOP BEGIN at zbesh.for(5519,10)
+   remark #15388: vectorization support: reference pr has aligned access   [ zbesh.for(5520,9) ]
+   remark #15388: vectorization support: reference beta has aligned access   [ zbesh.for(5520,9) ]
+   remark #15388: vectorization support: reference pi has aligned access   [ zbesh.for(5521,9) ]
+   remark #15388: vectorization support: reference beta has aligned access   [ zbesh.for(5521,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.679
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 4 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 17 
+   remark #15477: vector loop cost: 7.000 
+   remark #15478: estimated potential speedup: 1.650 
+   remark #15488: --- end vector loop cost summary ---
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 4
+   remark #25015: Estimate of max trip count of loop=3
+LOOP END
+
+LOOP BEGIN at zbesh.for(5519,10)
+<Remainder loop for vectorization>
+   remark #15388: vectorization support: reference pr has aligned access   [ zbesh.for(5520,9) ]
+   remark #15388: vectorization support: reference beta has aligned access   [ zbesh.for(5520,9) ]
+   remark #15388: vectorization support: reference pi has aligned access   [ zbesh.for(5521,9) ]
+   remark #15388: vectorization support: reference beta has aligned access   [ zbesh.for(5521,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 3.429
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=15
+LOOP END
+
+LOOP BEGIN at zbesh.for(5519,10)
+<Remainder loop for vectorization>
+   remark #25015: Estimate of max trip count of loop=30
+LOOP END
+
+LOOP BEGIN at zbesh.for(5535,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+
+   LOOP BEGIN at zbesh.for(5541,12)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+      remark #25015: Estimate of max trip count of loop=30
+   LOOP END
+
+   LOOP BEGIN at zbesh.for(5555,12)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+      remark #25015: Estimate of max trip count of loop=30
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZSQRT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZSQRT) [15/39=38.5%] zbesh.for(2254,18)
+  -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (2271,16) atan
+  -> EXTERN: (2289,15) cos
+  -> EXTERN: (2290,15) sin
+
+===========================================================================
+
+Begin optimization report for: ZS1S2
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZS1S2) [16/39=41.0%] zbesh.for(3233,18)
+  -> INLINE: (3255,13) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3256,13) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (3259,26) log
+  -> INLINE: (3266,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> INLINE: (3269,12) ZEXP (isz = 22) (sz = 33)
+    -> EXTERN: (2308,12) exp
+    -> EXTERN: (2309,15) cos
+    -> EXTERN: (2310,15) sin
+  -> INLINE: (3270,13) ZABS (isz = 38) (sz = 45)
+
+===========================================================================
+
+Begin optimization report for: ZUNK1
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNK1) [17/39=43.6%] zbesh.for(5728,18)
+  -> EXTERN: (5773,23) d1mach_
+  -> EXTERN: (5775,16) d1mach_
+  -> (5790,14) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> INLINE: (5796,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (5816,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (5817,21) log
+  -> EXTERN: (5829,15) exp
+  -> EXTERN: (5830,19) cos
+  -> EXTERN: (5831,19) sin
+  -> INLINE: (5836,14) ZUCHK (isz = 20) (sz = 33)
+  -> INLINE: (5864,20) ZABS (isz = 38) (sz = 45)
+  -> (5881,12) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> INLINE: (5887,17) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (5903,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (5904,17) log
+  -> EXTERN: (5974,15) cos
+  -> EXTERN: (5975,15) sin
+  -> (6012,14) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> INLINE: (6018,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6038,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6039,21) log
+  -> EXTERN: (6049,15) exp
+  -> EXTERN: (6050,19) cos
+  -> EXTERN: (6051,19) sin
+  -> INLINE: (6056,14) ZUCHK (isz = 20) (sz = 33)
+  -> (6073,14) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+  -> (6125,14) ZS1S2 (isz = 372) (sz = 395)
+     [[ Inlining would exceed -inline-max-size value (395>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(5783,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(5928,10)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5937,9) ]
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(5938,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s1r line 5948 and s1r line 5933
+LOOP END
+
+LOOP BEGIN at zbesh.for(5913,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(5913,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(5914,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(5915,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.583
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.250 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(5913,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(5913,10)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(5986,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at zbesh.for(6110,10)
+   remark #15382: vectorization support: call to function ZS1S2 cannot be vectorized   [ zbesh.for(6125,14) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between c2r line 6111 and c2r line 6125
+   remark #15346: vector dependence: assumed OUTPUT dependence between c2r line 6125 and c2r line 6111
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZUNIK
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNIK) [18/39=46.2%] zbesh.for(4802,18)
+  -> EXTERN: (4920,14) d1mach_
+  -> EXTERN: (4923,27) log
+  -> INLINE: (4935,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> INLINE: (4938,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (4939,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> INLINE: (4944,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (4947,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> INLINE: (4951,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(4958,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+
+   LOOP BEGIN at zbesh.for(4961,12)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between sr line 4965 and sr line 4963
+      remark #15346: vector dependence: assumed ANTI dependence between sr line 4963 and sr line 4965
+      remark #15346: vector dependence: assumed ANTI dependence between sr line 4963 and sr line 4965
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+      remark #25015: Estimate of max trip count of loop=120
+   LOOP END
+LOOP END
+
+LOOP BEGIN at zbesh.for(5002,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between tr line 5005 and tr line 5003
+   remark #15346: vector dependence: assumed ANTI dependence between tr line 5003 and tr line 5005
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+   remark #25457: Number of partial sums replaced: 2
+LOOP END
+
+LOOP BEGIN at zbesh.for(5002,10)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4986,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4986,10)
+   remark #15388: vectorization support: reference cwrkr has aligned access   [ zbesh.for(4987,9) ]
+   remark #15388: vectorization support: reference cwrki has aligned access   [ zbesh.for(4988,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 1.300
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 11 
+   remark #15477: vector loop cost: 5.000 
+   remark #15478: estimated potential speedup: 2.090 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4986,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4986,10)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZBUNK
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBUNK) [19/39=48.7%] zbesh.for(3283,18)
+  -> (3306,12) ZUNK1 (isz = 1488) (sz = 1515)
+     [[ Inlining would exceed -inline-max-size value (1515>230) <1>]]
+  -> (3314,12) ZUNK2 (isz = 1829) (sz = 1856)
+     [[ Inlining would exceed -inline-max-size value (1856>230) <1>]]
+
+===========================================================================
+
+Begin optimization report for: ZBESJ
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESJ) [20/39=51.3%] zbesh.for(622,18)
+  -> EXTERN: (796,19) d1mach_
+  -> EXTERN: (797,12) i1mach_
+  -> EXTERN: (798,12) i1mach_
+  -> EXTERN: (799,14) d1mach_
+  -> EXTERN: (802,12) i1mach_
+  -> INLINE: (812,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (815,21) i1mach_
+  -> EXTERN: (831,15) cos
+  -> EXTERN: (832,15) sin
+  -> (848,12) ZBINU (isz = 323) (sz = 352)
+     [[ Inlining would exceed -inline-max-size value (352>230) <1>]]
+  -> EXTERN: (854,15) d1mach_
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(855,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between csgnr line 873 and csgnr line 869
+   remark #15346: vector dependence: assumed ANTI dependence between csgnr line 869 and csgnr line 873
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZBESY
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESY) [21/39=53.8%] zbesh.for(1173,18)
+  -> (1350,12) ZBESI (isz = 338) (sz = 359)
+     [[ Inlining would exceed -inline-max-size value (359>253) <1>]]
+  -> (1352,12) ZBESK (isz = 415) (sz = 436)
+     [[ Inlining would exceed -inline-max-size value (436>253) <1>]]
+  -> EXTERN: (1358,15) cos
+  -> EXTERN: (1359,15) sin
+  -> EXTERN: (1393,13) cos
+  -> EXTERN: (1394,13) sin
+  -> EXTERN: (1395,17) d1mach_
+  -> EXTERN: (1396,12) i1mach_
+  -> EXTERN: (1397,12) i1mach_
+  -> EXTERN: (1399,14) d1mach_
+  -> EXTERN: (1406,29) exp
+  -> EXTERN: (1412,15) d1mach_
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(1413,10)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(1445,13) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between cspnr line 1451 and cspnr line 1427
+   remark #15346: vector dependence: assumed ANTI dependence between cspnr line 1427 and cspnr line 1451
+   remark #15346: vector dependence: assumed ANTI dependence between cspnr line 1427 and cspnr line 1451
+   remark #15346: vector dependence: assumed FLOW dependence between cspnr line 1451 and cspnr line 1427
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at zbesh.for(1371,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between cspnr line 1384 and cspnr line 1374
+   remark #15346: vector dependence: assumed ANTI dependence between cspnr line 1374 and cspnr line 1384
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at zbesh.for(1387,12)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(1387,12)
+   remark #15388: vectorization support: reference cyi has aligned access   [ zbesh.for(1388,11) ]
+   remark #15388: vectorization support: reference cyi has aligned access   [ zbesh.for(1388,11) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.625
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 5 
+   remark #15477: vector loop cost: 2.000 
+   remark #15478: estimated potential speedup: 2.410 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(1387,12)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZBESI
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESI) [22/39=56.4%] zbesh.for(351,18)
+  -> EXTERN: (531,19) d1mach_
+  -> EXTERN: (532,12) i1mach_
+  -> EXTERN: (533,12) i1mach_
+  -> EXTERN: (534,14) d1mach_
+  -> EXTERN: (537,12) i1mach_
+  -> INLINE: (547,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (550,21) i1mach_
+  -> EXTERN: (571,15) cos
+  -> EXTERN: (572,15) sin
+  -> (577,12) ZBINU (isz = 323) (sz = 352)
+     [[ Inlining would exceed -inline-max-size value (352>230) <1>]]
+  -> EXTERN: (587,15) d1mach_
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(588,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between csgni line 605 and csgni line 602
+   remark #15346: vector dependence: assumed ANTI dependence between csgni line 602 and csgni line 605
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZBESK
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBESK) [23/39=59.0%] zbesh.for(890,18)
+  -> EXTERN: (1069,19) d1mach_
+  -> EXTERN: (1070,12) i1mach_
+  -> EXTERN: (1071,12) i1mach_
+  -> EXTERN: (1072,14) d1mach_
+  -> EXTERN: (1075,12) i1mach_
+  -> INLINE: (1085,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (1088,21) i1mach_
+  -> EXTERN: (1099,13) d1mach_
+  -> EXTERN: (1106,17) log
+  -> (1110,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+  -> (1125,12) ZBKNU (isz = 2020) (sz = 2045)
+     [[ Inlining would exceed -inline-max-size value (2045>230) <1>]]
+  -> (1137,12) ZACON (isz = 733) (sz = 764)
+     [[ Inlining would exceed -inline-max-size value (764>230) <1>]]
+  -> INLINE: (1151,12) ZBUNK (isz = 36) (sz = 63)
+    -> (3306,12) ZUNK1 (isz = 1488) (sz = 1515)
+       [[ Inlining would exceed -inline-max-size value (1515>230) <1>]]
+    -> (3314,12) ZUNK2 (isz = 1829) (sz = 1856)
+       [[ Inlining would exceed -inline-max-size value (1856>230) <1>]]
+
+===========================================================================
+
+Begin optimization report for: ZEXP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZEXP) [24/39=61.5%] zbesh.for(2299,18)
+  -> EXTERN: (2308,12) exp
+  -> EXTERN: (2309,15) cos
+  -> EXTERN: (2310,15) sin
+
+===========================================================================
+
+Begin optimization report for: ZBIRY
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBIRY) [25/39=64.1%] zbesh.for(1853,18)
+  -> INLINE: (1995,12) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (1996,19) d1mach_
+  -> INLINE: (2052,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> EXTERN: (2057,13) exp
+  -> INLINE: (2072,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> EXTERN: (2077,13) exp
+  -> EXTERN: (2097,12) i1mach_
+  -> EXTERN: (2098,12) i1mach_
+  -> EXTERN: (2099,14) d1mach_
+  -> EXTERN: (2102,12) i1mach_
+  -> EXTERN: (2113,21) i1mach_
+  -> EXTERN: (2115,12) pow
+  -> INLINE: (2119,12) ZSQRT (isz = 150) (sz = 161)
+    -> INLINE: (2267,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2271,16) atan
+    -> EXTERN: (2289,15) cos
+    -> EXTERN: (2290,15) sin
+  -> EXTERN: (2144,24) log
+  -> (2159,12) ZBINU (isz = 323) (sz = 352)
+     [[ Inlining would exceed -inline-max-size value (352>230) <1>]]
+  -> EXTERN: (2164,13) cos
+  -> EXTERN: (2165,13) sin
+  -> (2169,12) ZBINU (isz = 323) (sz = 352)
+     [[ Inlining would exceed -inline-max-size value (352>230) <1>]]
+  -> INLINE: (2178,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (2182,13) cos
+  -> EXTERN: (2183,13) sin
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(2028,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZBINU
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBINU) [26/39=66.7%] zbesh.for(4374,18)
+  -> INLINE: (4391,12) ZABS (isz = 38) (sz = 45)
+  -> (4400,12) ZSERI (isz = 1050) (sz = 1075)
+     [[ Inlining would exceed -inline-max-size value (1075>230) <1>]]
+  -> (4415,12) ZASYI (isz = 862) (sz = 889)
+     [[ Inlining would exceed -inline-max-size value (889>230) <1>]]
+  -> (4425,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+  -> (4440,12) ZMLRI (isz = 1551) (sz = 1572)
+     [[ Inlining would exceed -inline-max-size value (1572>230) <1>]]
+  -> (4450,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+  -> (4461,12) ZWRSK (isz = 285) (sz = 314)
+     [[ Inlining would exceed -inline-max-size value (314>253) <1>]]
+  -> (4471,12) ZBUNI (isz = 472) (sz = 503)
+     [[ Inlining would exceed -inline-max-size value (503>253) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(4454,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4454,10)
+   remark #15388: vectorization support: reference cyr has aligned access   [ zbesh.for(4455,9) ]
+   remark #15388: vectorization support: reference cyi has aligned access   [ zbesh.for(4456,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.583
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.250 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4454,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4454,10)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZBUNI
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZBUNI) [27/39=69.2%] zbesh.for(6661,18)
+  -> CP_CLONE (6696,12) ZUNI1..0 (isz = 731) (sz = 760)
+     [[ Inlining would exceed -inline-max-size value (760>230) <1>]]
+  -> CP_CLONE (6705,12) ZUNI2..0 (isz = 948) (sz = 977)
+     [[ Inlining would exceed -inline-max-size value (977>230) <1>]]
+  -> INLINE: (6710,13) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6714,21) d1mach_
+  -> INLINE: (6736,19) ZABS (isz = 38) (sz = 45)
+  -> (6817,12) ZUNI1 (isz = 731) (sz = 760)
+     [[ Inlining would exceed -inline-max-size value (760>230) <1>]]
+  -> (6826,12) ZUNI2 (isz = 948) (sz = 977)
+     [[ Inlining would exceed -inline-max-size value (977>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(6741,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6749 and iflag line 6756
+   remark #15346: vector dependence: assumed FLOW dependence between iflag line 6756 and iflag line 6749
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6749 and iflag line 6756
+LOOP END
+
+LOOP BEGIN at zbesh.for(6775,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6788 and iflag line 6793
+   remark #15346: vector dependence: assumed FLOW dependence between iflag line 6793 and iflag line 6788
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6788 and iflag line 6793
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZUNI1..0
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNI1..0) [28/39=71.8%] zbesh.for(6836,18)
+  CLONED FROM: ZUNI1(X,X,X,X,2,X,X,X,X,X,X,X,X)
+  -> EXTERN: (6881,23) d1mach_
+  -> (6887,12) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> INLINE: (6892,17) ZABS (isz = 38) (sz = 45)
+  -> (6909,14) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> INLINE: (6914,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6934,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6935,21) log
+  -> EXTERN: (6946,15) exp
+  -> EXTERN: (6947,19) cos
+  -> EXTERN: (6948,19) sin
+  -> INLINE: (6953,14) ZUCHK (isz = 20) (sz = 33)
+  -> INLINE: (6963,20) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6969,16) d1mach_
+  -> (7020,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(7035,10)
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(7036,9) ]
+   remark #15389: vectorization support: reference yi has unaligned access   [ zbesh.for(7037,9) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15305: vectorization support: vector length 2
+   remark #15427: loop was completely unrolled
+   remark #15309: vectorization support: normalized vectorization overhead 0.833
+   remark #15451: unmasked unaligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 6.000 
+   remark #15478: estimated potential speedup: 0.630 
+   remark #15488: --- end vector loop cost summary ---
+   remark #25436: completely unrolled by 2  
+LOOP END
+
+LOOP BEGIN at zbesh.for(6906,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+   remark #25015: Estimate of max trip count of loop=2
+LOOP END
+
+LOOP BEGIN at zbesh.for(6978,10)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(6990,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6991 and iflag line 6996
+   remark #15346: vector dependence: assumed FLOW dependence between iflag line 6996 and iflag line 6991
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6991 and iflag line 6996
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at zbesh.for(7026,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form
+LOOP END
+
+Fusion of IFs performed in zuni1_..0 at line 6937
+===========================================================================
+
+Begin optimization report for: ZUOIK
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUOIK) [29/39=74.4%] zbesh.for(3975,18)
+  -> (4041,12) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> (4052,12) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (4056,14) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (4066,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (4073,19) log
+  -> EXTERN: (4074,42) log
+  -> EXTERN: (4083,19) log
+  -> EXTERN: (4084,42) log
+  -> EXTERN: (4094,22) d1mach_
+  -> INLINE: (4095,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> INLINE: (4099,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> EXTERN: (4103,12) exp
+  -> EXTERN: (4105,16) cos
+  -> EXTERN: (4106,16) sin
+  -> INLINE: (4107,12) ZUCHK (isz = 20) (sz = 33)
+  -> (4119,12) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> (4125,12) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (4129,14) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (4135,14) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (4139,19) log
+  -> EXTERN: (4140,42) log
+  -> EXTERN: (4150,22) d1mach_
+  -> INLINE: (4151,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> INLINE: (4155,12) ZLOG (isz = 137) (sz = 150)
+    -> EXTERN: (2333,16) atan
+    -> EXTERN: (2339,12) log
+    -> EXTERN: (2343,12) log
+    -> EXTERN: (2346,12) log
+    -> INLINE: (2350,12) ZABS (isz = 38) (sz = 45)
+    -> EXTERN: (2351,12) log
+  -> EXTERN: (4159,12) exp
+  -> EXTERN: (4161,16) cos
+  -> EXTERN: (4162,16) sin
+  -> INLINE: (4163,12) ZUCHK (isz = 20) (sz = 33)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(4087,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4087,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(4088,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(4089,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.583
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.250 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(4087,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4087,10)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(4111,12)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZUNI2..0
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNI2..0) [30/39=76.9%] zbesh.for(7041,18)
+  CLONED FROM: ZUNI2(X,X,X,X,2,X,X,X,X,X,X,X,X)
+  -> EXTERN: (7094,23) d1mach_
+  -> EXTERN: (7105,13) cos
+  -> EXTERN: (7106,13) sin
+  -> (7124,12) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (7129,17) ZABS (isz = 38) (sz = 45)
+  -> (7145,14) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (7150,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (7171,16) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (7172,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (7173,21) log
+  -> EXTERN: (7173,41) log
+  -> (7183,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> (7184,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> EXTERN: (7191,15) exp
+  -> EXTERN: (7192,19) cos
+  -> EXTERN: (7193,19) sin
+  -> INLINE: (7198,14) ZUCHK (isz = 20) (sz = 33)
+  -> INLINE: (7215,19) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (7221,16) d1mach_
+  -> (7272,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(7303,10)
+   remark #15389: vectorization support: reference yr has unaligned access   [ zbesh.for(7304,9) ]
+   remark #15389: vectorization support: reference yi has unaligned access   [ zbesh.for(7305,9) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15305: vectorization support: vector length 2
+   remark #15427: loop was completely unrolled
+   remark #15309: vectorization support: normalized vectorization overhead 0.833
+   remark #15451: unmasked unaligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 6.000 
+   remark #15478: estimated potential speedup: 0.630 
+   remark #15488: --- end vector loop cost summary ---
+   remark #25436: completely unrolled by 2  
+LOOP END
+
+LOOP BEGIN at zbesh.for(7143,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+   remark #25015: Estimate of max trip count of loop=2
+LOOP END
+
+LOOP BEGIN at zbesh.for(7230,10)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(7242,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 7243 and iflag line 7248
+   remark #15346: vector dependence: assumed FLOW dependence between iflag line 7248 and iflag line 7243
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 7243 and iflag line 7248
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at zbesh.for(7292,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZUNI2
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNI2) [31/39=79.5%] zbesh.for(7041,18)
+  -> EXTERN: (7094,23) d1mach_
+  -> EXTERN: (7105,13) cos
+  -> EXTERN: (7106,13) sin
+  -> (7124,12) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (7129,17) ZABS (isz = 38) (sz = 45)
+  -> (7145,14) ZUNHJ (isz = 1608) (sz = 1645)
+     [[ Inlining would exceed -inline-max-size value (1645>230) <1>]]
+  -> INLINE: (7150,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (7171,16) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (7172,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (7173,21) log
+  -> EXTERN: (7173,41) log
+  -> (7183,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> (7184,14) ZAIRY (isz = 1302) (sz = 1321)
+     [[ Inlining inhibited by overrideable criterion  <2>]]
+  -> EXTERN: (7191,15) exp
+  -> EXTERN: (7192,19) cos
+  -> EXTERN: (7193,19) sin
+  -> INLINE: (7198,14) ZUCHK (isz = 20) (sz = 33)
+  -> INLINE: (7215,19) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (7221,16) d1mach_
+  -> (7272,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(7303,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(7303,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(7304,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(7305,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.750
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.240 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(7303,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(7303,10)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(7143,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+   remark #25015: Estimate of max trip count of loop=2
+LOOP END
+
+LOOP BEGIN at zbesh.for(7230,10)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(7242,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 7243 and iflag line 7248
+   remark #15346: vector dependence: assumed FLOW dependence between iflag line 7248 and iflag line 7243
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 7243 and iflag line 7248
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at zbesh.for(7292,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZUNI1
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUNI1) [32/39=82.1%] zbesh.for(6836,18)
+  -> EXTERN: (6881,23) d1mach_
+  -> (6887,12) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> INLINE: (6892,17) ZABS (isz = 38) (sz = 45)
+  -> (6909,14) ZUNIK (isz = 988) (sz = 1025)
+     [[ Inlining would exceed -inline-max-size value (1025>230) <1>]]
+  -> INLINE: (6914,19) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (6934,16) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6935,21) log
+  -> EXTERN: (6946,15) exp
+  -> EXTERN: (6947,19) cos
+  -> EXTERN: (6948,19) sin
+  -> INLINE: (6953,14) ZUCHK (isz = 20) (sz = 33)
+  -> INLINE: (6963,20) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (6969,16) d1mach_
+  -> (7020,12) ZUOIK (isz = 1349) (sz = 1376)
+     [[ Inlining would exceed -inline-max-size value (1376>230) <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(7035,10)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(7035,10)
+   remark #15388: vectorization support: reference yr has aligned access   [ zbesh.for(7036,9) ]
+   remark #15388: vectorization support: reference yi has aligned access   [ zbesh.for(7037,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.750
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 7 
+   remark #15477: vector loop cost: 3.000 
+   remark #15478: estimated potential speedup: 2.240 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at zbesh.for(7035,10)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at zbesh.for(7035,10)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at zbesh.for(6906,10)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+   remark #25015: Estimate of max trip count of loop=2
+LOOP END
+
+LOOP BEGIN at zbesh.for(6978,10)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ zbesh.for(6990,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6991 and iflag line 6996
+   remark #15346: vector dependence: assumed FLOW dependence between iflag line 6996 and iflag line 6991
+   remark #15346: vector dependence: assumed ANTI dependence between iflag line 6991 and iflag line 6996
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at zbesh.for(7026,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form
+LOOP END
+
+Fusion of IFs performed in zuni1_ at line 6937
+===========================================================================
+
+Begin optimization report for: ZWRSK
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZWRSK) [33/39=84.6%] zbesh.for(3523,18)
+  -> (3546,12) ZBKNU (isz = 2020) (sz = 2045)
+     [[ Inlining would exceed -inline-max-size value (2045>230) <1>]]
+  -> (3548,12) ZRATI (isz = 634) (sz = 651)
+     [[ Inlining would exceed -inline-max-size value (651>230) <1>]]
+  -> EXTERN: (3556,15) cos
+  -> EXTERN: (3557,15) sin
+  -> INLINE: (3565,13) ZABS (isz = 38) (sz = 45)
+  -> EXTERN: (3566,22) d1mach_
+  -> INLINE: (3592,13) ZABS (isz = 38) (sz = 45)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(3603,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between sti line 3608 and sti line 3604
+   remark #15346: vector dependence: assumed ANTI dependence between sti line 3604 and sti line 3608
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZRATI
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZRATI) [34/39=87.2%] zbesh.for(3100,18)
+  -> INLINE: (3123,12) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3145,13) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3146,13) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3173,13) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3176,12) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3208,12) ZDIV (isz = 65) (sz = 80)
+    -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+  -> INLINE: (3219,14) ZABS (isz = 38) (sz = 45)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(3161,7)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form
+LOOP END
+
+LOOP BEGIN at zbesh.for(3192,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between p2i line 3201 and p2i line 3199
+   remark #15346: vector dependence: assumed ANTI dependence between p2i line 3199 and p2i line 3201
+LOOP END
+
+LOOP BEGIN at zbesh.for(3216,10)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between cyr line 3226 and cyr line 3217
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+===========================================================================
+
+Begin optimization report for: ZDIV
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZDIV) [35/39=89.7%] zbesh.for(2234,18)
+  -> INLINE: (2245,18) ZABS (isz = 38) (sz = 45)
+
+===========================================================================
+
+Begin optimization report for: ZMLT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZMLT) [36/39=92.3%] zbesh.for(2219,18)
+
+===========================================================================
+
+Begin optimization report for: ZUCHK
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZUCHK) [37/39=94.9%] zbesh.for(4774,18)
+
+===========================================================================
+
+Begin optimization report for: ZSHCH
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ZSHCH) [38/39=97.4%] zbesh.for(3078,18)
+  -> EXTERN: (3090,12) sinh
+  -> EXTERN: (3091,12) cosh
+  -> EXTERN: (3092,12) sin
+  -> EXTERN: (3093,12) cos
+
+===========================================================================
+
+Begin optimization report for: XERROR
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (XERROR) [39/39=100.0%] zbesh.for(7309,18)
+  -> EXTERN: (7322,7) for_write_seq_fmt
+  -> EXTERN: (7326,9) for_write_seq_lis
+  -> EXTERN: (7329,7) for_write_seq_fmt
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at zbesh.for(7324,10)
+   remark #15382: vectorization support: call to function for_write_seq_lis cannot be vectorized   [ zbesh.for(7326,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between 2140 line 7326 and 2140 line 7326
+   remark #15346: vector dependence: assumed OUTPUT dependence between 2140 line 7326 and 2140 line 7326
+LOOP END
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The subprogram is larger than the inliner would normally inline.  Use the
+    option -inline-max-size to increase the size of any subprogram that would
+    normally be inlined, add "!DIR$ATTRIBUTES FORCEINLINE" to the
+    declaration of the called function, or add "!DIR$ FORCEINLINE" before
+    the call site.
+
+<2> The compiler's heuristics predict that it is not profitable to inline the
+    call.  Add "!DIR$ATTRIBUTES FORCEINLINE" to the declaration of the called 
+    subprogram, or add "!DIR$ FORCEINLINE" before the call site.
+
